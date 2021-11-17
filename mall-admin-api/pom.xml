@@ -11,12 +11,16 @@
 		<version>0.0.1</version>
 	</parent>
 
-
-	<properties>
-		<java.version>11</java.version>
-	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.mall</groupId>
+			<artifactId>mall-core</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>com.mall</groupId>
+			<artifactId>mall-db</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

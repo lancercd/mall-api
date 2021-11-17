@@ -11,12 +11,26 @@
 		<version>0.0.1</version>
 	</parent>
 
-
-	<properties>
-		<java.version>11</java.version>
-	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.mall</groupId>
+			<artifactId>mall-core</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>com.mall</groupId>
+			<artifactId>mall-db</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mall</groupId>
+			<artifactId>mall-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mall</groupId>
+			<artifactId>mall-admin-api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -24,6 +38,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>exec</classifier>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
