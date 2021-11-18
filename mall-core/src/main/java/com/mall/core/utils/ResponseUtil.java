@@ -7,9 +7,9 @@ import java.util.Map;
  * 响应操作结果
  * <pre>
  *  {
- *      errno： 错误码，
- *      errmsg：错误消息，
- *      data：  响应数据
+ *      status：状态码，
+ *      msg：消息，
+ *      data：响应数据
  *  }
  * </pre>
  *
@@ -30,53 +30,66 @@ import java.util.Map;
  * <li> 504，更新数据失效，即后端采用了乐观锁更新，而并发更新时存在数据更新失效；
  * <li> 505，更新数据失败，即后端数据库更新失败（正常情况应该更新成功）。
  * </ul>
- * <li> 6xx，小商城后端业务错误码，
- * 具体见mall-admin-api模块的AdminResponseCode。
- * <li> 7xx，管理后台后端业务错误码，
- * 具体见mall-wx-api模块的WxResponseCode。
+ * <li> 6xx，后端业务错误码
+ * <li> 7xx，管理后台后端业务错误码
  * </ul>
  */
+
 public class ResponseUtil {
+
+    private static final String EMPTY_STRING = "";
+
+    private static final String DEFAULT_SUCCESS_MSG = "成功!";
+
+    private static final String DEFAULT_FAIL_MSG = "失败!";
+
+    private static Map<String, Object> build(Integer status, String msg) {
+        Map<String, Object> res = new HashMap<String, Object>();
+        res.put("status", status);
+        res.put("msg", msg);
+        return res;
+    }
+
+    private static Map<String, Object> buildSuccess(String msg) {
+        return build(0, msg);
+    }
+
+    private static Map<String, Object> buildFail(Integer status, String msg) {
+        return build(status, msg);
+    }
+
     public static Object ok() {
-        Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 0);
-        obj.put("errmsg", "成功");
-        return obj;
+        return buildSuccess(DEFAULT_SUCCESS_MSG);
     }
 
     public static Object ok(Object data) {
-        Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 0);
-        obj.put("errmsg", "成功");
+        Map<String, Object> obj = buildSuccess(DEFAULT_SUCCESS_MSG);
         obj.put("data", data);
         return obj;
     }
 
-    public static Object ok(String errmsg, Object data) {
-        Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 0);
-        obj.put("errmsg", errmsg);
+    public static Object ok(String msg, Object data) {
+        Map<String, Object> obj = buildSuccess(msg);
         obj.put("data", data);
         return obj;
     }
 
     public static Object fail() {
-        Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", -1);
-        obj.put("errmsg", "错误");
-        return obj;
+        return buildFail(1, DEFAULT_FAIL_MSG);
     }
 
-    public static Object fail(int errno, String errmsg) {
-        Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", errno);
-        obj.put("errmsg", errmsg);
-        return obj;
+    public static Object fail(String msg) {
+        return buildFail(1, msg);
+    }
+
+    public static Object fail(Integer status, String msg) {
+        return buildFail(status, msg);
     }
 
     public static Object badArgument() {
         return fail(401, "参数不对");
     }
+
     public static Object badArgument(String msg) {
         return fail(401, msg);
     }
@@ -84,8 +97,9 @@ public class ResponseUtil {
     public static Object badArgumentValue() {
         return fail(402, "参数值不对");
     }
+
     public static Object badArgumentValue(String msg) {
-        if (msg == null || "".equals(msg)) {
+        if (msg == null || EMPTY_STRING.equals(msg)) {
             return badArgumentValue();
         }
         return fail(402, msg);
@@ -111,7 +125,7 @@ public class ResponseUtil {
         return fail(505, "更新数据失败");
     }
 
-    public static Object unauthz() {
+    public static Object unauth() {
         return fail(506, "无操作权限");
     }
 }
