@@ -5,8 +5,10 @@
 <!--<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">-->
 
 <generatorConfiguration>
+    <!-- 引入配置文件 -->
+<!--    <properties resource="application-db.yml"/>-->
 
-    <context id="mysqlgenerator" targetRuntime="MyBatis3">
+    <context id="mysqlGenerator" targetRuntime="MyBatis3">
         <property name="autoDelimitKeywords" value="true"/>
         <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错-->
         <property name="beginningDelimiter" value="`"/>
@@ -39,10 +41,25 @@
 
         <commentGenerator>
             <property name="suppressDate" value="true"/>
-            <!--<property name="suppressAllComments" value="true"/>-->
+
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+
+            <!-- 生成的Java文件的编码 -->
+            <property name="javaFileEncoding" value="UTF-8" />
+
+            <!-- 格式化java代码 -->
+            <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+
+            <!-- 格式化XML代码 -->
+            <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
         </commentGenerator>
 
         <!--数据库连接信息-->
+<!--        <jdbcConnection driverClass="${spring.datasource.druid.driver-class-name}"-->
+<!--                        connectionURL="${spring.datasource.druid.url}"-->
+<!--                        userId="${spring.datasource.druid.username}"-->
+<!--                        password="${spring.datasource.druid.password}"/>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mall?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;verifyServerCertificate=false&amp;useSSL=false"
                         userId="mall"
@@ -54,232 +71,41 @@
 
         <javaModelGenerator targetPackage="com.mall.db.domain" targetProject="src/main/java"/>
             <sqlMapGenerator targetPackage="com.mall.db.dao" targetProject="src/main/resources"/>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.goodstuff.mall.db.dao"
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.mall.db.dao"
                              targetProject="src/main/java"/>
-        <!--        表名-->
-<!--        <table tableName="litemall_ad">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_address">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_admin">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="role_ids" javaType="java.lang.Integer[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_brand">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_cart">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="specifications" javaType="java.lang.String[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_category">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_collect">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_comment">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="pic_urls" javaType="java.lang.String[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="litemall_feedback">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="pic_urls" javaType="java.lang.String[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="litemall_footprint">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_goods">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="gallery" javaType="java.lang.String[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_goods_attribute">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_goods_specification">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_goods_product">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="specifications" javaType="java.lang.String[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_issue">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_keyword">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_order">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_order_goods">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="specifications" javaType="java.lang.String[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--            <columnOverride column="comments" javaType="java.lang.Integer[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>-->
-
-<!--        </table>-->
-<!--        <table tableName="litemall_region">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_search_history">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_storage">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_topic">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="goods" javaType="java.lang.Integer[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_user">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_system">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="litemall_user_formid">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="litemall_groupon_rules">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_groupon">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_coupon">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="goods_value" javaType="java.lang.Integer[]"-->
-<!--                            typeHandler="com.goodstuff.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_coupon_user">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_role">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-<!--        <table tableName="litemall_permission">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-
-        <!--                以下为新建的表-->
-        <!--                <table tableName="consignment">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="consignment_category">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="consignment_degree">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-<!--                        <table tableName="consignment_order">-->
-<!--                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                       </table>-->
-<!--                        <table tableName="consignment_request">-->
-<!--                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                        </table>-->
-<!--                        <table tableName="consignment_sale">-->
-<!--                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                        </table>-->
-        <!--                <table tableName="interactive">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="repair">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="repair_engineer">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="repair_category">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="repair_sample">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-<!--                        <table tableName="recycle_book">-->
-<!--                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                        </table>-->
-<!--                        <table tableName="reserve_order">-->
-<!--                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                        </table>-->
-        <!--                <table tableName="goods_recycle_info">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
 
 
-        <!--                <table tableName="interactive_reply">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
+        <!-- 表 -->
+        <!--
+        <table tableName="litemall_goods">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="gallery" javaType="java.lang.String[]"
+                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
 
-        <!--                <table tableName="interactive_praise">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
+        <table tableName="litemall_goods_product">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="specifications" javaType="java.lang.String[]"
+                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
+        <table tableName="litemall_order_goods">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="specifications" javaType="java.lang.String[]"
+                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
+            <columnOverride column="comments" javaType="java.lang.Integer[]"
+                            typeHandler="com.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>
 
-        <!--                <table tableName="interactive_reply_praise">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--                <table tableName="recycle_book_sample">-->
-        <!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--                </table>-->
-        <!--        <table tableName="time_post_context">-->
-        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="time_post_like">-->
-        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-<!--        <table tableName="time_post_order">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-        <!--        <table tableName="time_post_price">-->
-        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="time_post_remark">-->
-        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-<!--                <table tableName="time_post_remark_like">-->
-<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                </table>-->
-<!--                <table tableName="sensitive_words">-->
-<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                </table>-->
-<!--                <table tableName="sys_banner">-->
-<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                </table>-->
-<!--                <table tableName="shop_info">-->
-<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                </table>-->
-<!--                <table tableName="shop_distance">-->
-<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                </table>-->
-<!--                <table tableName="quick_info">-->
-<!--                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                </table>-->
-<!--            <table tableName="blacklist_reason">-->
-<!--                <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            </table>-->
+        </table>
 
-<!--                    <table tableName="message">-->
-<!--                        <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--                    </table>-->
-                    <table tableName="consignment_discuss_price">
-                        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                    </table>
+        <table tableName="consignment_discuss_price">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        -->
 
-
+        <table tableName="mall_ad">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>
