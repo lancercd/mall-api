@@ -21,8 +21,7 @@ public class IndexController {
     }
 
     @PostMapping("/db/test")
-    public Object dbTest(LocalDateTime time) {
-        System.out.println(time.toString());
+    public Object dbTest() {
         return ResponseUtil.ok(userService.get());
     }
 }
