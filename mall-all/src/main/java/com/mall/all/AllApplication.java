@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {"com.mall"})
-@MapperScan("com.mall.db.dao")
 public class AllApplication {
 
 	public static void main(String[] args) {
