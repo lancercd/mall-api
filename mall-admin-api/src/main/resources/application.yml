@@ -5,12 +5,15 @@ spring:
     encoding: UTF-8
 
 server:
+  # 单独启动此服务时的port
+  # 可设置为其他端口 不影响 AllApplication启动的端口
   port: 10086
 
-#logging:
-#  level:
-#    root:  ERROR
-#    org.springframework:  ERROR
-#    org.mybatis:  ERROR
-#    com.mall.admin:  DEBUG
-#    com.mall:  ERROR
+# 启动时显示的debug信息 只显示error
+logging:
+  level:
+    root:  ERROR
+    org.springframework:  ERROR
+    org.mybatis:  ERROR
+    com.mall.admin:  DEBUG
+    com.mall:  ERROR

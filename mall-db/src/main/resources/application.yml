@@ -4,6 +4,7 @@ spring:
   messages:
     encoding: UTF-8
 
+# 启动时显示的debug信息 控制
 #logging:
 #  level:
 #    root:  ERROR
