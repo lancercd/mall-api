@@ -63,8 +63,8 @@
 <!--                        userId="${spring.datasource.druid.username}"-->
 <!--                        password="${spring.datasource.druid.password}"/>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mall?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;verifyServerCertificate=false&amp;useSSL=false"
-                        userId="mall"
+                        connectionURL="jdbc:mysql://localhost:3306/guli?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;verifyServerCertificate=false&amp;useSSL=false"
+                        userId="guli"
                         password="123456"/>
 
         <javaTypeResolver>
@@ -105,7 +105,15 @@
         </table>
         -->
 
-        <table tableName="mall_ad">
+        <table tableName="admin">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="category">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="goods">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
