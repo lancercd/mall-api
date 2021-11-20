@@ -2,6 +2,7 @@ package com.mall.core.exception;
 
 
 import com.mall.core.utils.ResponseUtil;
+import com.mall.db.exception.ServiceBadArgumentException;
 import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.springframework.core.Ordered;
@@ -23,18 +24,20 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({
+            ServiceBadArgumentException.class,
             IllegalArgumentException.class,
             MethodArgumentTypeMismatchException.class,
             MissingServletRequestParameterException.class,
             HttpMessageNotReadableException.class
     })
-    public Object badArgumentHandler(Exception e) {
-        System.out.println("参数错误");
+    public Object argumentExceptionHandler(Exception e) {
         e.printStackTrace();
+        System.out.println("参数错误");
+        System.out.println(e.getMessage());
         return ResponseUtil.badArgumentValue();
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     public Object handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         FieldError fieldError = e.getBindingResult().getFieldError();
         String defaultMessage = null;
