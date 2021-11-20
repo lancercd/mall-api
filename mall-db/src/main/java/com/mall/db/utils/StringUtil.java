@@ -1,6 +1,6 @@
-package com.mall.core.utils;
+package com.mall.db.utils;
 
-public final class StringUtils {
+public final class StringUtil {
     public static final String EMPTY_STRING = "";
 
     /**
