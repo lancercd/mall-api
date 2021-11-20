@@ -22,26 +22,14 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public Object badArgumentHandler(IllegalArgumentException e) {
-        e.printStackTrace();
-        return ResponseUtil.badArgumentValue();
-    }
-
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public Object badArgumentHandler(MethodArgumentTypeMismatchException e) {
-        e.printStackTrace();
-        return ResponseUtil.badArgumentValue();
-    }
-
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public Object badArgumentHandler(MissingServletRequestParameterException e) {
-        e.printStackTrace();
-        return ResponseUtil.badArgumentValue();
-    }
-
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public Object badArgumentHandler(HttpMessageNotReadableException e) {
+    @ExceptionHandler({
+            IllegalArgumentException.class,
+            MethodArgumentTypeMismatchException.class,
+            MissingServletRequestParameterException.class,
+            HttpMessageNotReadableException.class
+    })
+    public Object badArgumentHandler(Exception e) {
+        System.out.println("参数错误");
         e.printStackTrace();
         return ResponseUtil.badArgumentValue();
     }
@@ -57,14 +45,14 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler(value = TokenException.class)
+    @ExceptionHandler(TokenException.class)
     public Object TokenExceptionHandler(){
 
         return ResponseUtil.fail(401 , "请登录");
     }
 
 
-    @ExceptionHandler(value = MaxUploadSizeExceededException.class)
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
     public Object maximumUploadSizeExceeded(MaxUploadSizeExceededException e){
         Throwable cause = e.getCause().getCause();
         String msg = null;
