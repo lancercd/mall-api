@@ -4,9 +4,9 @@ spring:
   messages:
     encoding: UTF-8
 
-logging:
-  level:
-    root:  ERROR
-    org.springframework:  ERROR
-    org.mybatis:  ERROR
-    com.goodstuff.mall.db:  DEBUG
+#logging:
+#  level:
+#    root:  ERROR
+#    org.springframework:  ERROR
+#    org.mybatis:  ERROR
+#    com.mall.db:  DEBUG
