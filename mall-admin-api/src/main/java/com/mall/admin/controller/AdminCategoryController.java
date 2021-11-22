@@ -2,11 +2,11 @@ package com.mall.admin.controller;
 
 
 import com.mall.core.utils.ResponseUtil;
-import com.mall.db.utils.StringUtil;
 import com.mall.db.domain.Category;
-import com.mall.db.service.CategoryService;
+import com.mall.db.service.CategoryBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,30 +17,35 @@ import java.util.List;
 public class AdminCategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryBaseService categoryBaseService;
 
 
     @PostMapping("/list")
     public Object getList() {
-        List<Category> data = categoryService.getList();
+        List<Category> data = categoryBaseService.getList();
         return ResponseUtil.ok(data);
     }
 
     @PostMapping("/add")
-    public Object add(Category category) {
-        // String name = body.get("name");
-        // System.out.println(name);
-        System.out.println(category);
+    public Object add(@RequestBody Category category) {
 
-        // if (!StringUtil.isEmpty(category.getName())) {
-        //     return ResponseUtil.badArgument("分类名称不能为空!");
-        // }
-
-        boolean res = categoryService.add(category);
+        boolean res = categoryBaseService.add(category);
         if(!res) {
             return ResponseUtil.fail("添加失败!");
         }
         return ResponseUtil.ok();
     }
+
+    @PostMapping("/modify")
+    public Object modify(@RequestBody Category category) {
+        System.out.println(category);
+
+        boolean res = categoryBaseService.modify(category);
+        if(!res) {
+            return ResponseUtil.fail("修改失败!");
+        }
+        return ResponseUtil.ok();
+    }
+
 
 }
