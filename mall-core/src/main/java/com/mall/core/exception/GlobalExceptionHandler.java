@@ -3,10 +3,12 @@ package com.mall.core.exception;
 
 import com.mall.core.utils.ResponseUtil;
 import com.mall.db.exception.ServiceBadArgumentException;
+import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -45,6 +47,23 @@ public class GlobalExceptionHandler {
             defaultMessage = fieldError.getDefaultMessage();
         }
         return ResponseUtil.badArgumentValue(defaultMessage);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Object DataIntegrityViolationExceptionHandler(DataIntegrityViolationException e){
+        e.printStackTrace();
+
+        Throwable cause = e.getCause();
+
+        // 数据超过数据库该字段类型长度
+        if (cause instanceof MysqlDataTruncation) {
+            String message = cause.getMessage();
+            System.out.println(message);
+            return ResponseUtil.fail(message);
+        }
+
+        System.out.println(e.getMessage());
+        return ResponseUtil.updatedDataFailed();
     }
 
 

@@ -20,16 +20,30 @@ public class CategoryService {
         return categoryMapper.selectByPrimaryKey(id);
     }
 
-    public boolean add (Category category) {
-
+    public boolean add(Category category) {
         if (null == category || StringUtil.isEmpty(category.getName())) {
             throw new ServiceBadArgumentException("分类名不能为空!");
         }
 
         category.setId(null);
-        int i = categoryMapper.insertSelective(category);
-        System.out.println(i);
-        return true;
+        return categoryMapper.insertSelective(category) == 1;
+    }
+
+    public boolean modify(Category category) {
+        if (null == category || StringUtil.isEmpty(category.getName())) {
+            throw new ServiceBadArgumentException("分类名不能为空!");
+        }
+
+        Integer id = category.getId();
+        if (null == id || id.compareTo(0) < 1) {
+            throw new ServiceBadArgumentException("id错误!");
+        }
+
+        if (null == findById(id)) {
+            throw new ServiceBadArgumentException("该id不存在!");
+        }
+
+        return categoryMapper.updateByPrimaryKey(category) == 1;
     }
 
     public List<Category> getList() {
