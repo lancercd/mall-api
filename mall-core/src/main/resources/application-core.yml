@@ -3,11 +3,29 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 50MB
-      location: /data/mall/tmp/multipart/
+      location: /data/asd4ds5a52fdsa2dh/mall/tmp/multipart/
   mvc:
     throw-exception-if-no-handler-found: true
     static-path-pattern: /statics/**
 
 server:
   tomcat:
-    basedir: /data/mall/tmp/tomcat/
+    basedir: /data/df4s5a44dfsa/mall/tmp/tomcat/
+
+
+sys:
+
+  # 项目地址url
+  #    主要用于文件上传下载后返回的url地址拼接
+  url: http://127.0.0.1:10086
+  storage:
+    active: local
+    local:
+
+      # 获取文件path
+      address: /storage/fetch/  #http://127.0.0.1:10086/wx/storage/fetch/
+
+      # 上传文件存放目录
+      #     以/开始  windows: 当前项目所在盘符根目录(D:/{value})    linux: 文件根目录(/{value})
+      #     无/则当前项目根目录位置
+      storage-path: storage
