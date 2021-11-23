@@ -3,6 +3,7 @@ package com.mall.admin.controller;
 
 import com.mall.admin.service.AdminGoodsService;
 import com.mall.core.utils.ResponseUtil;
+import com.mall.db.domain.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,23 @@ public class AdminGoodsController {
 
     @GetMapping("/change/status")
     public Object changeState(@RequestParam Integer id, @RequestParam Boolean status) {
-        adminGoodsService.changeState(id, status);
+        if (!adminGoodsService.changeState(id, status)) {
+            return ResponseUtil.updatedDataFailed();
+        }
         return ResponseUtil.ok();
+    }
+
+
+    @GetMapping("/detail/{id}")
+    public Object detail(@PathVariable() Integer id) {
+
+
+        Goods goods = adminGoodsService.detail(id);
+        if (null == goods) {
+            return ResponseUtil.fail("商品不存在!");
+        }
+
+        return ResponseUtil.ok(goods);
     }
 
 }

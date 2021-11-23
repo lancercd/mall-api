@@ -18,6 +18,10 @@ public class AdminGoodsService {
     @Autowired
     private GoodsBaseService goodsBaseService;
 
+    public Goods detail(Integer id) {
+        return goodsBaseService.findById(id);
+    }
+
 
     public Map<String, Object> list(Integer currentPageNum, Integer pageSize, String type, String key) {
         List<Goods> goods = goodsBaseService.querySelectiveSimple(currentPageNum, pageSize, type, key);
