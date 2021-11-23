@@ -1,12 +1,10 @@
 package com.mall.core.storage;
 
-import com.mall.core.utils.CharUtil;
 import org.springframework.core.io.Resource;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -18,11 +16,7 @@ public class StorageService {
     private String active;
     private Storage storage;
 
-    private Path rootLocation;
-
     private static final String EMPTY_STRING = "";
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public String getActive() {
         return active;
@@ -69,12 +63,9 @@ public class StorageService {
     public String store(InputStream inputStream, long contentLength, String contentType, String fileName) {
         String fileSuffix = getFileSuffix(fileName);
         String RandomFileName = getRandomFileName(fileSuffix);
+        String incompletePath = storage.store(inputStream, contentLength, contentType, RandomFileName);
 
-        storage.store(inputStream, contentLength, contentType, RandomFileName);
-
-        String url = generateUrl(RandomFileName);
-
-        return url;
+        return generateUrl(incompletePath);
     }
 
 
@@ -87,8 +78,13 @@ public class StorageService {
         return storage.load(keyName);
     }
 
-    public Resource loadAsResource(String keyName) {
-        return storage.loadAsResource(keyName);
+    public Resource loadAsResource(String keyName) throws FileNotFoundException {
+        Resource resource = storage.loadAsResource(keyName);
+        if (null == resource || !resource.exists() || !resource.isReadable()) {
+            throw new FileNotFoundException();
+        }
+
+        return resource;
     }
 
     public void delete(String keyName) {

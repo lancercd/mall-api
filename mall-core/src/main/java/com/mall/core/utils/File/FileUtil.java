@@ -61,6 +61,35 @@ public class FileUtil {
     }
 
     /**
+     * 获取文件MediaType (仅限图片)
+     * @param originalFilename 文件名
+     * @return String
+     */
+    public static String getMediaType(String originalFilename) {
+        String fileSuffix = getFileSuffix(originalFilename);
+        switch(fileSuffix) {
+            case ".jpg":
+            case ".jpeg":
+            case ".jfif":
+                return "image/jpeg";
+            case ".gif":
+                return "image/gif";
+            case ".png":
+                return "image/png";
+            case ".ico":
+                return "image/x-icon";
+            case ".svg":
+                return "image/svg+xml";
+            case ".tiff":
+                return "image/tiff";
+            default:
+                return EMPTY_STRING;
+
+        }
+    }
+
+
+    /**
      * getDownloadUrl
      * @param filePath
      * @param rename

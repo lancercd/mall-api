@@ -1,7 +1,9 @@
 package com.mall.core.storage;
 
 
+import com.mall.core.sys.SysService;
 import com.mall.core.utils.File.FileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 
@@ -9,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,6 +30,9 @@ public class LocalStorage implements Storage {
     private String storageStrPath;
 
     private Path storagePath;
+
+    @Autowired
+    private SysService sysService;
 
     /**
      * 文件分隔符
@@ -92,6 +98,8 @@ public class LocalStorage implements Storage {
         try {
             Path file = load(filename);
             Resource resource = new UrlResource(file.toUri());
+            System.out.println(resource.exists());
+            System.out.println(resource.isReadable());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
@@ -113,9 +121,12 @@ public class LocalStorage implements Storage {
         }
     }
 
+    private String transformFileSeparator(String path) {
+        return (FILE_SEPARATOR == '/')? path : path.replaceAll("\\\\", "/");
+    }
+
     @Override
     public String generateUrl(String keyName) {
-        String url = address + keyName;
-        return url;
+        return sysService.getUrl() + this.address + transformFileSeparator(keyName);
     }
 }
