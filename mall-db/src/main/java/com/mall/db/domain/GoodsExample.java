@@ -108,19 +108,50 @@ public class GoodsExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> imagesCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            imagesCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getImagesCriteria() {
+            return imagesCriteria;
+        }
+
+        protected void addImagesCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            imagesCriteria.add(new Criterion(condition, value, "com.mall.db.mybatis.JsonStringArrayTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addImagesCriterion(String condition, String[] value1, String[] value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            imagesCriteria.add(new Criterion(condition, value1, value2, "com.mall.db.mybatis.JsonStringArrayTypeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || imagesCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(imagesCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -132,6 +163,7 @@ public class GoodsExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -139,6 +171,7 @@ public class GoodsExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -146,6 +179,7 @@ public class GoodsExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andIdIsNull() {
@@ -615,6 +649,106 @@ public class GoodsExample {
 
         public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesIsNull() {
+            addCriterion("images is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesIsNotNull() {
+            addCriterion("images is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesEqualTo(String[] value) {
+            addImagesCriterion("images =", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("images = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotEqualTo(String[] value) {
+            addImagesCriterion("images <>", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("images <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesGreaterThan(String[] value) {
+            addImagesCriterion("images >", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("images > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesGreaterThanOrEqualTo(String[] value) {
+            addImagesCriterion("images >=", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("images >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLessThan(String[] value) {
+            addImagesCriterion("images <", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("images < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLessThanOrEqualTo(String[] value) {
+            addImagesCriterion("images <=", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("images <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLike(String[] value) {
+            addImagesCriterion("images like", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotLike(String[] value) {
+            addImagesCriterion("images not like", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesIn(List<String[]> values) {
+            addImagesCriterion("images in", values, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotIn(List<String[]> values) {
+            addImagesCriterion("images not in", values, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesBetween(String[] value1, String[] value2) {
+            addImagesCriterion("images between", value1, value2, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotBetween(String[] value1, String[] value2) {
+            addImagesCriterion("images not between", value1, value2, "images");
             return (Criteria) this;
         }
 

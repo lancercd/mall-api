@@ -15,6 +15,8 @@ public class Goods {
 
     private BigDecimal price;
 
+    private String[] images;
+
     private Boolean status;
 
     public Integer getId() {
@@ -57,6 +59,14 @@ public class Goods {
         this.price = price;
     }
 
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
+    }
+
     public Boolean getStatus() {
         return status;
     }
@@ -76,6 +86,7 @@ public class Goods {
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
         sb.append(", price=").append(price);
+        sb.append(", images=").append(images);
         sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();
@@ -98,6 +109,7 @@ public class Goods {
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
+            && (Arrays.equals(this.getImages(), other.getImages()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
@@ -110,6 +122,7 @@ public class Goods {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
+        result = prime * result + (Arrays.hashCode(getImages()));
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
@@ -120,6 +133,7 @@ public class Goods {
         name("name", "name", "VARCHAR", true),
         description("description", "description", "VARCHAR", false),
         price("price", "price", "DECIMAL", false),
+        images("images", "images", "VARCHAR", false),
         status("status", "status", "BIT", true);
 
         private static final String BEGINNING_DELIMITER = "`";

@@ -115,6 +115,8 @@
 
         <table tableName="goods">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="images" javaType="java.lang.String[]"
+                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
 
     </context>
