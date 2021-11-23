@@ -135,6 +135,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Spring Boot 配置注解处理器 (非必要  增加配置注解的提示) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 
