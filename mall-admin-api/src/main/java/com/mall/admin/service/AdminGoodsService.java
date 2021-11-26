@@ -2,9 +2,11 @@ package com.mall.admin.service;
 
 
 import com.github.pagehelper.PageInfo;
+import com.mall.core.dto.GoodsDTO;
 import com.mall.db.domain.Goods;
 import com.mall.db.exception.ServiceBadArgumentException;
 import com.mall.db.service.GoodsBaseService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,43 @@ public class AdminGoodsService {
     @Autowired
     private GoodsBaseService goodsBaseService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+
     public Goods detail(Integer id) {
         return goodsBaseService.findById(id);
     }
 
 
+    /**
+     * 添加或更新
+     *      通过id区分
+     * @param goodsDTO validated商品
+     * @return boolean
+     */
+    public boolean addOrUpdate(GoodsDTO goodsDTO) {
+
+        Goods goods = modelMapper.map(goodsDTO, Goods.class);
+
+        if (!this.imageUrlsValidate(goods)) {
+            throw new ServiceBadArgumentException("图片url不符合要求!");
+        }
+
+        if (null != goods.getId()) {
+            return goodsBaseService.updateSelective(goods);
+        }
+        return goodsBaseService.add(goods);
+    }
+
+    /**
+     * 商品列表
+     * @param currentPageNum 当前页码
+     * @param pageSize  每页大小
+     * @param type  通过什么搜索
+     * @param key   搜索的keywords
+     * @return list and total
+     */
     public Map<String, Object> list(Integer currentPageNum, Integer pageSize, String type, String key) {
         List<Goods> goods = goodsBaseService.querySelectiveSimple(currentPageNum, pageSize, type, key);
         long total = PageInfo.of(goods).getTotal();
@@ -33,6 +67,12 @@ public class AdminGoodsService {
         return data;
     }
 
+    /**
+     * 修改商品状态
+     * @param id    商品id
+     * @param status    状态
+     * @return boolean
+     */
     public boolean changeState(Integer id, Boolean status) {
         if (null == id || null == status || null == goodsBaseService.findById(id)) {
             throw new ServiceBadArgumentException("参数错误!");
@@ -43,5 +83,15 @@ public class AdminGoodsService {
         goods.setStatus(status);
 
         return goodsBaseService.updateSelective(goods);
+    }
+
+    /**
+     * 对图片url进行校验
+     * @param goods 商品
+     * @return boolean
+     */
+    private boolean imageUrlsValidate(Goods goods) {
+        // TODO 完成url校验
+        return true;
     }
 }

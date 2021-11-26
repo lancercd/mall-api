@@ -53,6 +53,10 @@ public class GoodsBaseService {
         return goodsMapper.updateByPrimaryKey(goods) == 1;
     }
 
+    public boolean add(Goods goods) {
+        return goodsMapper.insert(goods) == 1;
+    }
+
     public boolean updateSelective(Goods goods) {
         return goodsMapper.updateByPrimaryKeySelective(goods) == 1;
     }
