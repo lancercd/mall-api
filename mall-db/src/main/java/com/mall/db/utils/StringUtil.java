@@ -1,6 +1,4 @@
-package com.mall.core.utils;
-
-import org.springframework.util.StringUtils;
+package com.mall.db.utils;
 
 public final class StringUtil {
     public static final String EMPTY_STRING = "";
@@ -14,6 +12,11 @@ public final class StringUtil {
         return (str == null || EMPTY_STRING.equals(str));
     }
 
+    /**
+     * 判断字符串是否全为空格
+     * @param str 目标字符串
+     * @return boolean
+     */
     public static boolean isBlank(String str) {
         if(isEmpty(str)) return true;
 
