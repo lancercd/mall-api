@@ -1,4 +1,6 @@
-package com.mall.db.utils;
+package com.mall.core.utils;
+
+import org.springframework.util.StringUtils;
 
 public final class StringUtil {
     public static final String EMPTY_STRING = "";
@@ -10,5 +12,20 @@ public final class StringUtil {
      */
     public static boolean isEmpty(String str) {
         return (str == null || EMPTY_STRING.equals(str));
+    }
+
+    public static boolean isBlank(String str) {
+        if(isEmpty(str)) return true;
+
+        final int len = str.length();
+        char[] chars = str.toCharArray();
+
+        for(int i=0; i<len; ++i) {
+            if(chars[i] != ' '){
+                return false;
+            }
+        }
+
+        return true;
     }
 }
