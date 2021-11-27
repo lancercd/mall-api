@@ -1,6 +1,7 @@
 package com.mall.db.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,6 +19,8 @@ public class Goods {
     private String[] images;
 
     private Boolean status;
+
+    private LocalDateTime addTime;
 
     public Integer getId() {
         return id;
@@ -75,6 +78,14 @@ public class Goods {
         this.status = status;
     }
 
+    public LocalDateTime getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(LocalDateTime addTime) {
+        this.addTime = addTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -88,6 +99,7 @@ public class Goods {
         sb.append(", price=").append(price);
         sb.append(", images=").append(images);
         sb.append(", status=").append(status);
+        sb.append(", addTime=").append(addTime);
         sb.append("]");
         return sb.toString();
     }
@@ -110,7 +122,8 @@ public class Goods {
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
             && (Arrays.equals(this.getImages(), other.getImages()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
     }
 
     @Override
@@ -124,6 +137,7 @@ public class Goods {
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
         result = prime * result + (Arrays.hashCode(getImages()));
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
         return result;
     }
 
@@ -134,7 +148,8 @@ public class Goods {
         description("description", "description", "VARCHAR", false),
         price("price", "price", "DECIMAL", false),
         images("images", "images", "VARCHAR", false),
-        status("status", "status", "BIT", true);
+        status("status", "status", "BIT", true),
+        addTime("add_time", "addTime", "TIMESTAMP", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 
