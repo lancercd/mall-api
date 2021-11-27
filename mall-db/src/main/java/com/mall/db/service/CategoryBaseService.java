@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class CategoryBaseService {
+public class CategoryBaseService extends BaseService {
 
     @Resource
     private CategoryMapper categoryMapper;

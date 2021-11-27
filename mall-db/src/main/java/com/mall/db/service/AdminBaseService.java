@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-public class AdminBaseService {
+public class AdminBaseService extends BaseService {
 
     @Resource
     private AdminMapper adminMapper;

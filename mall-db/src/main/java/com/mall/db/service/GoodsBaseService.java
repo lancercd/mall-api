@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class GoodsBaseService {
+public class GoodsBaseService extends BaseService {
 
     @Resource
     private GoodsMapper goodsMapper;
