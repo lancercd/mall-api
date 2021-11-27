@@ -1,6 +1,5 @@
 package com.mall.core.dto;
 
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.mall.core.utils.JsonSerializer.StringArrayJsonSerializer;
 import lombok.AllArgsConstructor;
@@ -8,14 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.*;
-import java.io.Serializable;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoodsDTO implements Serializable {
+public class GoodsDTO {
 
     @NotNull(message = "id不能为空", groups = Add.class)
     private Integer id;
