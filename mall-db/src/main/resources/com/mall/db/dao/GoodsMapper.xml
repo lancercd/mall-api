@@ -8,6 +8,7 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="images" jdbcType="VARCHAR" property="images" typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="status" jdbcType="BIT" property="status" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
   </resultMap>
@@ -108,7 +109,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, category_id, `name`, description, price, images, `status`, add_time
+    id, category_id, `name`, description, price, images, detail, `status`, add_time
   </sql>
   <select id="selectByExample" parameterType="com.mall.db.domain.GoodsExample" resultMap="BaseResultMap">
     select
@@ -184,10 +185,12 @@
     </selectKey>
     insert into goods (category_id, `name`, description, 
       price, images, 
-      `status`, add_time)
+      detail, `status`, add_time
+      )
     values (#{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler}, 
-      #{status,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP})
+      #{detail,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.mall.db.domain.Goods">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -209,6 +212,9 @@
       </if>
       <if test="images != null">
         images,
+      </if>
+      <if test="detail != null">
+        detail,
       </if>
       <if test="status != null">
         `status`,
@@ -232,6 +238,9 @@
       </if>
       <if test="images != null">
         #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=BIT},
@@ -268,6 +277,9 @@
       <if test="record.images != null">
         images = #{record.images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
       </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=BIT},
       </if>
@@ -287,6 +299,7 @@
       description = #{record.description,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       images = #{record.images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
+      detail = #{record.detail,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=BIT},
       add_time = #{record.addTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -311,6 +324,9 @@
       <if test="images != null">
         images = #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
       </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=BIT},
       </if>
@@ -327,6 +343,7 @@
       description = #{description,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       images = #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
+      detail = #{detail,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=BIT},
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
