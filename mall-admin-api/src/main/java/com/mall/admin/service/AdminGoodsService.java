@@ -3,10 +3,10 @@ package com.mall.admin.service;
 
 import com.github.pagehelper.PageInfo;
 import com.mall.core.dto.GoodsDTO;
+import com.mall.core.utils.RegexUtil;
 import com.mall.db.domain.Goods;
 import com.mall.db.exception.ServiceBadArgumentException;
 import com.mall.db.service.GoodsBaseService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +19,6 @@ public class AdminGoodsService {
 
     @Autowired
     private GoodsBaseService goodsBaseService;
-
-    @Autowired
-    private ModelMapper modelMapper;
 
 
     public Goods detail(Integer id) {
@@ -37,7 +34,7 @@ public class AdminGoodsService {
      */
     public boolean addOrUpdate(GoodsDTO goodsDTO) {
 
-        Goods goods = modelMapper.map(goodsDTO, Goods.class);
+        Goods goods = goodsBaseService.map(goodsDTO, Goods.class);
 
         if (!this.imageUrlsValidate(goods)) {
             throw new ServiceBadArgumentException("图片url不符合要求!");
@@ -46,7 +43,7 @@ public class AdminGoodsService {
         if (null != goods.getId()) {
             return goodsBaseService.updateSelective(goods);
         }
-        return goodsBaseService.add(goods);
+        return goodsBaseService.addSelective(goods);
     }
 
     /**
@@ -91,7 +88,14 @@ public class AdminGoodsService {
      * @return boolean
      */
     private boolean imageUrlsValidate(Goods goods) {
-        // TODO 完成url校验
+
+        String[] images = goods.getImages();
+        if(null == images) return false;
+
+        for (String image : images) {
+            if (!RegexUtil.isImageUrl(image)) return false;
+        }
+
         return true;
     }
 }
