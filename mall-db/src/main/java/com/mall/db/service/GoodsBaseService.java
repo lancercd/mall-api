@@ -10,6 +10,7 @@ import com.mall.db.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -37,12 +38,14 @@ public class GoodsBaseService extends BaseService {
         GoodsExample.Criteria criteria = example.createCriteria();
 
         if (!StringUtil.isEmpty(type)) {
-            if ("name".equals(type)) {
+            if (Column.name.value().equals(type)) {
                 criteria.andNameLike('%' + key + '%');
-            } else if ("description".equals(type)) {
+            } else if (Column.description.value().equals(type)) {
                 criteria.andDescriptionLike('%' + key + '%');
             }
         }
+
+        example.orderBy(Column.addTime.desc());
 
         PageHelper.startPage(currentPageNum, pageSize);
 
@@ -54,7 +57,13 @@ public class GoodsBaseService extends BaseService {
     }
 
     public boolean add(Goods goods) {
+        goods.setAddTime(LocalDateTime.now());
         return goodsMapper.insert(goods) == 1;
+    }
+
+    public boolean addSelective(Goods goods) {
+        goods.setAddTime(LocalDateTime.now());
+        return goodsMapper.insertSelective(goods) == 1;
     }
 
     public boolean updateSelective(Goods goods) {
