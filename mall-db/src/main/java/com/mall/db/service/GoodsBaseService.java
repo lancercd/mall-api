@@ -23,9 +23,10 @@ public class GoodsBaseService extends BaseService {
             Column.id,
             Column.name,
             Column.description,
-            Column.status,
             Column.price,
-            Column.categoryId
+            Column.categoryId,
+            Column.detail,
+            Column.status
     };
 
 
