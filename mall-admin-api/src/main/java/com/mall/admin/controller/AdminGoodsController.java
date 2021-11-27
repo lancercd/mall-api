@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.groups.Default;
 import java.util.Map;
 
 @Validated
@@ -54,28 +55,24 @@ public class AdminGoodsController {
 
 
     @PostMapping("/add")
-    public Object add(@Validated(GoodsDTO.Add.class) @RequestBody GoodsDTO goodsDTO) {
+    public Object add(@Validated({GoodsDTO.Add.class, Default.class}) @RequestBody GoodsDTO goodsDTO) {
 
         goodsDTO.setId(null);
 
-        String[] images = goodsDTO.getImages();
-
         if(!adminGoodsService.addOrUpdate(goodsDTO)) {
-            return ResponseUtil.fail("添加失败");
+            return ResponseUtil.fail("添加失败!");
         }
 
         return ResponseUtil.ok();
     }
 
     @PostMapping("/update")
-    public Object update(@Validated(GoodsDTO.Update.class) @RequestBody GoodsDTO goodsDTO) {
+    public Object update(@Validated({GoodsDTO.Update.class, Default.class}) @RequestBody GoodsDTO goodsDTO) {
 
         System.out.println(goodsDTO);
 
-        String[] images = goodsDTO.getImages();
-
         if(!adminGoodsService.addOrUpdate(goodsDTO)) {
-            return ResponseUtil.fail("添加失败");
+            return ResponseUtil.fail("修改失败!");
         }
 
         return ResponseUtil.ok();
