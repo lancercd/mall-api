@@ -21,7 +21,7 @@ public class GoodsDTO {
 
     @NotBlank(message = "商品名称不能为空!")
     @Length(min = 2, message = "商品名称不能少于{min}个字符!")
-    @Length(max = 8, message = "商品名称不能对于{max}个字符!")
+    @Length(max = 10, message = "商品名称不能多于{max}个字符!")
     private String name;
 
     @NotBlank(message="商品描述不能为空!")
