@@ -63,8 +63,8 @@
 <!--                        userId="${spring.datasource.druid.username}"-->
 <!--                        password="${spring.datasource.druid.password}"/>-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/guli?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;verifyServerCertificate=false&amp;useSSL=false"
-                        userId="guli"
+                        connectionURL="jdbc:mysql://localhost:3306/mall?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;verifyServerCertificate=false&amp;useSSL=false"
+                        userId="mall"
                         password="123456"/>
 
         <javaTypeResolver>
@@ -104,6 +104,10 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
         -->
+
+        <table tableName="user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
         <table tableName="admin">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
