@@ -1,6 +1,9 @@
 package com.mall.core.utils;
 
+import com.github.pagehelper.PageInfo;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -72,6 +75,14 @@ public class ResponseUtil {
         Map<String, Object> obj = buildSuccess(msg);
         obj.put("data", data);
         return obj;
+    }
+
+    public static <T> Object pagination(List<T> lists) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("count", PageInfo.of(lists).getTotal());
+        data.put("list", lists);
+
+        return ResponseUtil.ok(data);
     }
 
     public static Object fail() {

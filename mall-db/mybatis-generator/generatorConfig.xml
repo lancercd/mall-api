@@ -105,22 +105,26 @@
         </table>
         -->
 
-        <table tableName="user">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+<!--        <table tableName="user">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
 
-        <table tableName="admin">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+<!--        <table tableName="admin">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
 
-        <table tableName="category">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+<!--        <table tableName="category">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
 
-        <table tableName="goods">
+<!--        <table tableName="goods">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--            <columnOverride column="images" javaType="java.lang.String[]"-->
+<!--                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
+<!--        </table>-->
+
+        <table tableName="school">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="images" javaType="java.lang.String[]"
-                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
 
     </context>

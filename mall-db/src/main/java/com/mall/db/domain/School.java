@@ -4,16 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class User {
+public class School {
     private Integer id;
 
-    private String username;
-
-    private String pwd;
-
-    private Integer schoolId;
-
-    private Byte status;
+    private String name;
 
     private LocalDateTime addTime;
 
@@ -25,36 +19,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public Integer getSchoolId() {
-        return schoolId;
-    }
-
-    public void setSchoolId(Integer schoolId) {
-        this.schoolId = schoolId;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getAddTime() {
@@ -72,10 +42,7 @@ public class User {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", pwd=").append(pwd);
-        sb.append(", schoolId=").append(schoolId);
-        sb.append(", status=").append(status);
+        sb.append(", name=").append(name);
         sb.append(", addTime=").append(addTime);
         sb.append("]");
         return sb.toString();
@@ -92,12 +59,9 @@ public class User {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        School other = (School) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
-            && (this.getSchoolId() == null ? other.getSchoolId() == null : this.getSchoolId().equals(other.getSchoolId()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
     }
 
@@ -106,20 +70,14 @@ public class User {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
-        result = prime * result + ((getSchoolId() == null) ? 0 : getSchoolId().hashCode());
-        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
         return result;
     }
 
     public enum Column {
         id("id", "id", "INTEGER", false),
-        username("username", "username", "VARCHAR", false),
-        pwd("pwd", "pwd", "VARCHAR", false),
-        schoolId("school_id", "schoolId", "INTEGER", false),
-        status("status", "status", "TINYINT", true),
+        name("name", "name", "VARCHAR", true),
         addTime("add_time", "addTime", "TIMESTAMP", false);
 
         private static final String BEGINNING_DELIMITER = "`";
