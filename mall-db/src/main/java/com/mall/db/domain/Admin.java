@@ -8,7 +8,7 @@ public class Admin {
 
     private String username;
 
-    private String password;
+    private String pwd;
 
     public Integer getId() {
         return id;
@@ -26,12 +26,12 @@ public class Admin {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Admin {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
+        sb.append(", pwd=").append(pwd);
         sb.append("]");
         return sb.toString();
     }
@@ -61,7 +61,7 @@ public class Admin {
         Admin other = (Admin) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()));
+            && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()));
     }
 
     @Override
@@ -70,14 +70,14 @@ public class Admin {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+        result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
         return result;
     }
 
     public enum Column {
         id("id", "id", "INTEGER", false),
         username("username", "username", "VARCHAR", false),
-        password("password", "password", "VARCHAR", true);
+        pwd("pwd", "pwd", "VARCHAR", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

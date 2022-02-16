@@ -1,4 +1,4 @@
-package com.mall.api.dto.request;
+package com.mall.core.dto;
 
 import lombok.Getter;
 import lombok.Setter;

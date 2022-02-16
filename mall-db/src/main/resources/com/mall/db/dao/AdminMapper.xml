@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mall.db.domain.Admin">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, `password`
+    id, username, pwd
   </sql>
   <select id="selectByExample" parameterType="com.mall.db.domain.AdminExample" resultMap="BaseResultMap">
     select
@@ -139,8 +139,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into admin (username, `password`)
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+    insert into admin (username, pwd)
+    values (#{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mall.db.domain.Admin">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -151,16 +151,16 @@
       <if test="username != null">
         username,
       </if>
-      <if test="password != null">
-        `password`,
+      <if test="pwd != null">
+        pwd,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -179,8 +179,8 @@
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        `password` = #{record.password,jdbcType=VARCHAR},
+      <if test="record.pwd != null">
+        pwd = #{record.pwd,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -191,7 +191,7 @@
     update admin
     set id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
-      `password` = #{record.password,jdbcType=VARCHAR}
+      pwd = #{record.pwd,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -202,8 +202,8 @@
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        `password` = #{password,jdbcType=VARCHAR},
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -211,7 +211,7 @@
   <update id="updateByPrimaryKey" parameterType="com.mall.db.domain.Admin">
     update admin
     set username = #{username,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR}
+      pwd = #{pwd,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="com.mall.db.domain.AdminExample" resultMap="BaseResultMap">

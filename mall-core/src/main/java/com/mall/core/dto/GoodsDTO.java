@@ -1,20 +1,17 @@
 package com.mall.core.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.mall.core.utils.JsonSerializer.StringArrayJsonSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
-import javax.validation.groups.Default;
 import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoodsDTO {
+public class GoodsDTO extends BaseRequest {
 
     @NotNull(message = "id不能为空", groups = Update.class)
     private Integer id;
