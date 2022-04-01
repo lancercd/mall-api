@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall.db.dao.CategoryMapper">
-  <resultMap id="BaseResultMap" type="com.mall.db.domain.Category">
+<mapper namespace="com.mall.db.dao.BannerMapper">
+  <resultMap id="BaseResultMap" type="com.mall.db.domain.Banner">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="img" jdbcType="VARCHAR" property="img" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="sort" jdbcType="SMALLINT" property="sort" />
-    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, img, `name`, sort, add_time
+    id, url, sort
   </sql>
-  <select id="selectByExample" parameterType="com.mall.db.domain.CategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.mall.db.domain.BannerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from category
+    from banner
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -98,7 +96,7 @@
         <include refid="Base_Column_List" />
       </otherwise>
     </choose>
-    from category
+    from banner
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -109,7 +107,7 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from category
+    from banner
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="BaseResultMap">
@@ -124,85 +122,65 @@
         <include refid="Base_Column_List" />
       </otherwise>
     </choose>
-    from category
+    from banner
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from category
+    delete from banner
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mall.db.domain.CategoryExample">
-    delete from category
+  <delete id="deleteByExample" parameterType="com.mall.db.domain.BannerExample">
+    delete from banner
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mall.db.domain.Category">
+  <insert id="insert" parameterType="com.mall.db.domain.Banner">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into category (img, `name`, sort, 
-      add_time)
-    values (#{img,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=SMALLINT}, 
-      #{addTime,jdbcType=TIMESTAMP})
+    insert into banner (url, sort)
+    values (#{url,jdbcType=VARCHAR}, #{sort,jdbcType=SMALLINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.mall.db.domain.Category">
+  <insert id="insertSelective" parameterType="com.mall.db.domain.Banner">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into category
+    insert into banner
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="img != null">
-        img,
-      </if>
-      <if test="name != null">
-        `name`,
+      <if test="url != null">
+        url,
       </if>
       <if test="sort != null">
         sort,
       </if>
-      <if test="addTime != null">
-        add_time,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="img != null">
-        #{img,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=SMALLINT},
       </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mall.db.domain.CategoryExample" resultType="java.lang.Long">
-    select count(*) from category
+  <select id="countByExample" parameterType="com.mall.db.domain.BannerExample" resultType="java.lang.Long">
+    select count(*) from banner
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update category
+    update banner
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.img != null">
-        img = #{record.img,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null">
-        `name` = #{record.name,jdbcType=VARCHAR},
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
       </if>
       <if test="record.sort != null">
         sort = #{record.sort,jdbcType=SMALLINT},
-      </if>
-      <if test="record.addTime != null">
-        add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -210,46 +188,36 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update category
+    update banner
     set id = #{record.id,jdbcType=INTEGER},
-      img = #{record.img,jdbcType=VARCHAR},
-      `name` = #{record.name,jdbcType=VARCHAR},
-      sort = #{record.sort,jdbcType=SMALLINT},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP}
+      url = #{record.url,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=SMALLINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mall.db.domain.Category">
-    update category
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.db.domain.Banner">
+    update banner
     <set>
-      <if test="img != null">
-        img = #{img,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=SMALLINT},
       </if>
-      <if test="addTime != null">
-        add_time = #{addTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mall.db.domain.Category">
-    update category
-    set img = #{img,jdbcType=VARCHAR},
-      `name` = #{name,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=SMALLINT},
-      add_time = #{addTime,jdbcType=TIMESTAMP}
+  <update id="updateByPrimaryKey" parameterType="com.mall.db.domain.Banner">
+    update banner
+    set url = #{url,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectOneByExample" parameterType="com.mall.db.domain.CategoryExample" resultMap="BaseResultMap">
+  <select id="selectOneByExample" parameterType="com.mall.db.domain.BannerExample" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from category
+    from banner
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -270,7 +238,7 @@
         <include refid="Base_Column_List" />
       </otherwise>
     </choose>
-    from category
+    from banner
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -273,6 +273,186 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
+        public Criteria andUidIsNull() {
+            addCriterion("`uid` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidIsNotNull() {
+            addCriterion("`uid` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidEqualTo(Integer value) {
+            addCriterion("`uid` =", value, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`uid` = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUidNotEqualTo(Integer value) {
+            addCriterion("`uid` <>", value, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`uid` <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUidGreaterThan(Integer value) {
+            addCriterion("`uid` >", value, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`uid` > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`uid` >=", value, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`uid` >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUidLessThan(Integer value) {
+            addCriterion("`uid` <", value, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`uid` < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUidLessThanOrEqualTo(Integer value) {
+            addCriterion("`uid` <=", value, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`uid` <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUidIn(List<Integer> values) {
+            addCriterion("`uid` in", values, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidNotIn(List<Integer> values) {
+            addCriterion("`uid` not in", values, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidBetween(Integer value1, Integer value2) {
+            addCriterion("`uid` between", value1, value2, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidNotBetween(Integer value1, Integer value2) {
+            addCriterion("`uid` not between", value1, value2, "uid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("`type` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("`type` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Byte value) {
+            addCriterion("`type` =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`type` = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Byte value) {
+            addCriterion("`type` <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`type` <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Byte value) {
+            addCriterion("`type` >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`type` > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("`type` >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`type` >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Byte value) {
+            addCriterion("`type` <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`type` < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("`type` <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`type` <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Byte> values) {
+            addCriterion("`type` in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Byte> values) {
+            addCriterion("`type` not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Byte value1, Byte value2) {
+            addCriterion("`type` between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("`type` not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
         public Criteria andCategoryIdIsNull() {
             addCriterion("category_id is null");
             return (Criteria) this;
@@ -463,106 +643,6 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("description is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("description is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("description =", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("description = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("description <>", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("description <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("description >", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThanColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("description > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("description >=", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThanOrEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("description >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("description <", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThanColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("description < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("description <=", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThanOrEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("description <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("description like", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("description not like", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("description in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("description not in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("description between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("description not between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
         public Criteria andPriceIsNull() {
             addCriterion("price is null");
             return (Criteria) this;
@@ -650,6 +730,376 @@ public class GoodsExample {
 
         public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceIsNull() {
+            addCriterion("normal_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceIsNotNull() {
+            addCriterion("normal_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceEqualTo(BigDecimal value) {
+            addCriterion("normal_price =", value, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("normal_price = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceNotEqualTo(BigDecimal value) {
+            addCriterion("normal_price <>", value, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("normal_price <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceGreaterThan(BigDecimal value) {
+            addCriterion("normal_price >", value, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("normal_price > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("normal_price >=", value, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("normal_price >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceLessThan(BigDecimal value) {
+            addCriterion("normal_price <", value, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("normal_price < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("normal_price <=", value, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("normal_price <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceIn(List<BigDecimal> values) {
+            addCriterion("normal_price in", values, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceNotIn(List<BigDecimal> values) {
+            addCriterion("normal_price not in", values, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("normal_price between", value1, value2, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andNormalPriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("normal_price not between", value1, value2, "normalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountIsNull() {
+            addCriterion("discount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountIsNotNull() {
+            addCriterion("discount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountEqualTo(Byte value) {
+            addCriterion("discount =", value, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("discount = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountNotEqualTo(Byte value) {
+            addCriterion("discount <>", value, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("discount <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountGreaterThan(Byte value) {
+            addCriterion("discount >", value, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("discount > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountGreaterThanOrEqualTo(Byte value) {
+            addCriterion("discount >=", value, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("discount >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountLessThan(Byte value) {
+            addCriterion("discount <", value, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("discount < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountLessThanOrEqualTo(Byte value) {
+            addCriterion("discount <=", value, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("discount <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountIn(List<Byte> values) {
+            addCriterion("discount in", values, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountNotIn(List<Byte> values) {
+            addCriterion("discount not in", values, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountBetween(Byte value1, Byte value2) {
+            addCriterion("discount between", value1, value2, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiscountNotBetween(Byte value1, Byte value2) {
+            addCriterion("discount not between", value1, value2, "discount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdIsNull() {
+            addCriterion("degree_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdIsNotNull() {
+            addCriterion("degree_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdEqualTo(Byte value) {
+            addCriterion("degree_id =", value, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("degree_id = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdNotEqualTo(Byte value) {
+            addCriterion("degree_id <>", value, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("degree_id <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdGreaterThan(Byte value) {
+            addCriterion("degree_id >", value, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("degree_id > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdGreaterThanOrEqualTo(Byte value) {
+            addCriterion("degree_id >=", value, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("degree_id >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdLessThan(Byte value) {
+            addCriterion("degree_id <", value, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("degree_id < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdLessThanOrEqualTo(Byte value) {
+            addCriterion("degree_id <=", value, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("degree_id <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdIn(List<Byte> values) {
+            addCriterion("degree_id in", values, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdNotIn(List<Byte> values) {
+            addCriterion("degree_id not in", values, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdBetween(Byte value1, Byte value2) {
+            addCriterion("degree_id between", value1, value2, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDegreeIdNotBetween(Byte value1, Byte value2) {
+            addCriterion("degree_id not between", value1, value2, "degreeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerIsNull() {
+            addCriterion("banner is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerIsNotNull() {
+            addCriterion("banner is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerEqualTo(String value) {
+            addCriterion("banner =", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("banner = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerNotEqualTo(String value) {
+            addCriterion("banner <>", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("banner <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerGreaterThan(String value) {
+            addCriterion("banner >", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("banner > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerGreaterThanOrEqualTo(String value) {
+            addCriterion("banner >=", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("banner >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerLessThan(String value) {
+            addCriterion("banner <", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("banner < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerLessThanOrEqualTo(String value) {
+            addCriterion("banner <=", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("banner <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerLike(String value) {
+            addCriterion("banner like", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerNotLike(String value) {
+            addCriterion("banner not like", value, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerIn(List<String> values) {
+            addCriterion("banner in", values, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerNotIn(List<String> values) {
+            addCriterion("banner not in", values, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerBetween(String value1, String value2) {
+            addCriterion("banner between", value1, value2, "banner");
+            return (Criteria) this;
+        }
+
+        public Criteria andBannerNotBetween(String value1, String value2) {
+            addCriterion("banner not between", value1, value2, "banner");
             return (Criteria) this;
         }
 
@@ -753,103 +1203,193 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andDetailIsNull() {
-            addCriterion("detail is null");
+        public Criteria andPropsIsNull() {
+            addCriterion("props is null");
             return (Criteria) this;
         }
 
-        public Criteria andDetailIsNotNull() {
-            addCriterion("detail is not null");
+        public Criteria andPropsIsNotNull() {
+            addCriterion("props is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDetailEqualTo(String value) {
-            addCriterion("detail =", value, "detail");
+        public Criteria andPropsEqualTo(String value) {
+            addCriterion("props =", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("detail = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPropsEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("props = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andDetailNotEqualTo(String value) {
-            addCriterion("detail <>", value, "detail");
+        public Criteria andPropsNotEqualTo(String value) {
+            addCriterion("props <>", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailNotEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("detail <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPropsNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("props <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andDetailGreaterThan(String value) {
-            addCriterion("detail >", value, "detail");
+        public Criteria andPropsGreaterThan(String value) {
+            addCriterion("props >", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailGreaterThanColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("detail > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPropsGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("props > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andDetailGreaterThanOrEqualTo(String value) {
-            addCriterion("detail >=", value, "detail");
+        public Criteria andPropsGreaterThanOrEqualTo(String value) {
+            addCriterion("props >=", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailGreaterThanOrEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("detail >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPropsGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("props >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andDetailLessThan(String value) {
-            addCriterion("detail <", value, "detail");
+        public Criteria andPropsLessThan(String value) {
+            addCriterion("props <", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailLessThanColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("detail < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPropsLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("props < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andDetailLessThanOrEqualTo(String value) {
-            addCriterion("detail <=", value, "detail");
+        public Criteria andPropsLessThanOrEqualTo(String value) {
+            addCriterion("props <=", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailLessThanOrEqualToColumn(Goods.Column column) {
-            addCriterion(new StringBuilder("detail <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPropsLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("props <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andDetailLike(String value) {
-            addCriterion("detail like", value, "detail");
+        public Criteria andPropsLike(String value) {
+            addCriterion("props like", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailNotLike(String value) {
-            addCriterion("detail not like", value, "detail");
+        public Criteria andPropsNotLike(String value) {
+            addCriterion("props not like", value, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailIn(List<String> values) {
-            addCriterion("detail in", values, "detail");
+        public Criteria andPropsIn(List<String> values) {
+            addCriterion("props in", values, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailNotIn(List<String> values) {
-            addCriterion("detail not in", values, "detail");
+        public Criteria andPropsNotIn(List<String> values) {
+            addCriterion("props not in", values, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailBetween(String value1, String value2) {
-            addCriterion("detail between", value1, value2, "detail");
+        public Criteria andPropsBetween(String value1, String value2) {
+            addCriterion("props between", value1, value2, "props");
             return (Criteria) this;
         }
 
-        public Criteria andDetailNotBetween(String value1, String value2) {
-            addCriterion("detail not between", value1, value2, "detail");
+        public Criteria andPropsNotBetween(String value1, String value2) {
+            addCriterion("props not between", value1, value2, "props");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityIsNull() {
+            addCriterion("quantity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityIsNotNull() {
+            addCriterion("quantity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityEqualTo(Integer value) {
+            addCriterion("quantity =", value, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("quantity = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityNotEqualTo(Integer value) {
+            addCriterion("quantity <>", value, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("quantity <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityGreaterThan(Integer value) {
+            addCriterion("quantity >", value, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("quantity > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("quantity >=", value, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("quantity >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityLessThan(Integer value) {
+            addCriterion("quantity <", value, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("quantity < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityLessThanOrEqualTo(Integer value) {
+            addCriterion("quantity <=", value, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("quantity <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityIn(List<Integer> values) {
+            addCriterion("quantity in", values, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityNotIn(List<Integer> values) {
+            addCriterion("quantity not in", values, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityBetween(Integer value1, Integer value2) {
+            addCriterion("quantity between", value1, value2, "quantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantityNotBetween(Integer value1, Integer value2) {
+            addCriterion("quantity not between", value1, value2, "quantity");
             return (Criteria) this;
         }
 
@@ -863,7 +1403,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Boolean value) {
+        public Criteria andStatusEqualTo(Byte value) {
             addCriterion("`status` =", value, "status");
             return (Criteria) this;
         }
@@ -873,7 +1413,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Boolean value) {
+        public Criteria andStatusNotEqualTo(Byte value) {
             addCriterion("`status` <>", value, "status");
             return (Criteria) this;
         }
@@ -883,7 +1423,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Boolean value) {
+        public Criteria andStatusGreaterThan(Byte value) {
             addCriterion("`status` >", value, "status");
             return (Criteria) this;
         }
@@ -893,7 +1433,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
             addCriterion("`status` >=", value, "status");
             return (Criteria) this;
         }
@@ -903,7 +1443,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Boolean value) {
+        public Criteria andStatusLessThan(Byte value) {
             addCriterion("`status` <", value, "status");
             return (Criteria) this;
         }
@@ -913,7 +1453,7 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andStatusLessThanOrEqualTo(Byte value) {
             addCriterion("`status` <=", value, "status");
             return (Criteria) this;
         }
@@ -923,23 +1463,203 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Boolean> values) {
+        public Criteria andStatusIn(List<Byte> values) {
             addCriterion("`status` in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Boolean> values) {
+        public Criteria andStatusNotIn(List<Byte> values) {
             addCriterion("`status` not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andStatusBetween(Byte value1, Byte value2) {
             addCriterion("`status` between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
             addCriterion("`status` not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleIsNull() {
+            addCriterion("is_on_sale is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleIsNotNull() {
+            addCriterion("is_on_sale is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleEqualTo(Byte value) {
+            addCriterion("is_on_sale =", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("is_on_sale = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotEqualTo(Byte value) {
+            addCriterion("is_on_sale <>", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("is_on_sale <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleGreaterThan(Byte value) {
+            addCriterion("is_on_sale >", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("is_on_sale > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleGreaterThanOrEqualTo(Byte value) {
+            addCriterion("is_on_sale >=", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("is_on_sale >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleLessThan(Byte value) {
+            addCriterion("is_on_sale <", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("is_on_sale < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleLessThanOrEqualTo(Byte value) {
+            addCriterion("is_on_sale <=", value, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("is_on_sale <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleIn(List<Byte> values) {
+            addCriterion("is_on_sale in", values, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotIn(List<Byte> values) {
+            addCriterion("is_on_sale not in", values, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleBetween(Byte value1, Byte value2) {
+            addCriterion("is_on_sale between", value1, value2, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnSaleNotBetween(Byte value1, Byte value2) {
+            addCriterion("is_on_sale not between", value1, value2, "isOnSale");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewIsNull() {
+            addCriterion("`view` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewIsNotNull() {
+            addCriterion("`view` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewEqualTo(Integer value) {
+            addCriterion("`view` =", value, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`view` = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andViewNotEqualTo(Integer value) {
+            addCriterion("`view` <>", value, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewNotEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`view` <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andViewGreaterThan(Integer value) {
+            addCriterion("`view` >", value, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewGreaterThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`view` > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andViewGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`view` >=", value, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewGreaterThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`view` >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andViewLessThan(Integer value) {
+            addCriterion("`view` <", value, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewLessThanColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`view` < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andViewLessThanOrEqualTo(Integer value) {
+            addCriterion("`view` <=", value, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewLessThanOrEqualToColumn(Goods.Column column) {
+            addCriterion(new StringBuilder("`view` <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andViewIn(List<Integer> values) {
+            addCriterion("`view` in", values, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewNotIn(List<Integer> values) {
+            addCriterion("`view` not in", values, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewBetween(Integer value1, Integer value2) {
+            addCriterion("`view` between", value1, value2, "view");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewNotBetween(Integer value1, Integer value2) {
+            addCriterion("`view` not between", value1, value2, "view");
             return (Criteria) this;
         }
 

@@ -6,8 +6,13 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, pwd, school_id, `status`, add_time
+    id, username, pwd, school_id, gender, last_login_time, mobile, avatar, `status`, 
+    add_time, deleted
   </sql>
   <select id="selectByExample" parameterType="com.mall.db.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -113,6 +119,21 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByPrimaryKeyWithLogicalDelete" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+      and deleted = 
+    <choose>
+      <when test="andLogicalDeleted">
+        1
+      </when>
+      <otherwise>
+        0
+      </otherwise>
+    </choose>
+  </select>
   <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="BaseResultMap">
     select
     <choose>
@@ -143,9 +164,13 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user (username, pwd, school_id, 
-      `status`, add_time)
+      gender, last_login_time, mobile, 
+      avatar, `status`, add_time, 
+      deleted)
     values (#{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{schoolId,jdbcType=INTEGER}, 
-      #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP})
+      #{gender,jdbcType=TINYINT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}, 
+      #{avatar,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.mall.db.domain.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -162,11 +187,26 @@
       <if test="schoolId != null">
         school_id,
       </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
       <if test="status != null">
         `status`,
       </if>
       <if test="addTime != null">
         add_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -179,11 +219,26 @@
       <if test="schoolId != null">
         #{schoolId,jdbcType=INTEGER},
       </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
       <if test="status != null">
         #{status,jdbcType=TINYINT},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -208,11 +263,26 @@
       <if test="record.schoolId != null">
         school_id = #{record.schoolId,jdbcType=INTEGER},
       </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=TINYINT},
+      </if>
+      <if test="record.lastLoginTime != null">
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatar != null">
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=TINYINT},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -225,8 +295,13 @@
       username = #{record.username,jdbcType=VARCHAR},
       pwd = #{record.pwd,jdbcType=VARCHAR},
       school_id = #{record.schoolId,jdbcType=INTEGER},
+      gender = #{record.gender,jdbcType=TINYINT},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=TINYINT},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP}
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -243,11 +318,26 @@
       <if test="schoolId != null">
         school_id = #{schoolId,jdbcType=INTEGER},
       </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=TINYINT},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -257,8 +347,13 @@
     set username = #{username,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},
       school_id = #{schoolId,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=TINYINT},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=TINYINT},
-      add_time = #{addTime,jdbcType=TIMESTAMP}
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="com.mall.db.domain.UserExample" resultMap="BaseResultMap">
@@ -294,4 +389,14 @@
     </if>
     limit 1
   </select>
+  <update id="logicalDeleteByExample" parameterType="map">
+    update user set deleted = 1
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="logicalDeleteByPrimaryKey" parameterType="java.lang.Integer">
+    update user set deleted = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

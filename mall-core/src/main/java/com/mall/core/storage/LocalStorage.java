@@ -98,8 +98,6 @@ public class LocalStorage implements Storage {
         try {
             Path file = load(filename);
             Resource resource = new UrlResource(file.toUri());
-            System.out.println(resource.exists());
-            System.out.println(resource.isReadable());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {

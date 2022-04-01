@@ -8,21 +8,39 @@ import java.util.Arrays;
 public class Goods {
     private Integer id;
 
+    private Integer uid;
+
+    private Byte type;
+
     private Integer categoryId;
 
     private String name;
 
-    private String description;
-
     private BigDecimal price;
+
+    private BigDecimal normalPrice;
+
+    private Byte discount;
+
+    private Byte degreeId;
+
+    private String banner;
 
     private String[] images;
 
-    private String detail;
+    private String props;
 
-    private Boolean status;
+    private Integer quantity;
+
+    private Byte status;
+
+    private Byte isOnSale;
+
+    private Integer view;
 
     private LocalDateTime addTime;
+
+    private String description;
 
     public Integer getId() {
         return id;
@@ -30,6 +48,22 @@ public class Goods {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
     }
 
     public Integer getCategoryId() {
@@ -48,20 +82,44 @@ public class Goods {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getNormalPrice() {
+        return normalPrice;
+    }
+
+    public void setNormalPrice(BigDecimal normalPrice) {
+        this.normalPrice = normalPrice;
+    }
+
+    public Byte getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Byte discount) {
+        this.discount = discount;
+    }
+
+    public Byte getDegreeId() {
+        return degreeId;
+    }
+
+    public void setDegreeId(Byte degreeId) {
+        this.degreeId = degreeId;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
     }
 
     public String[] getImages() {
@@ -72,20 +130,44 @@ public class Goods {
         this.images = images;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getProps() {
+        return props;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setProps(String props) {
+        this.props = props;
     }
 
-    public Boolean getStatus() {
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    public Byte getIsOnSale() {
+        return isOnSale;
+    }
+
+    public void setIsOnSale(Byte isOnSale) {
+        this.isOnSale = isOnSale;
+    }
+
+    public Integer getView() {
+        return view;
+    }
+
+    public void setView(Integer view) {
+        this.view = view;
     }
 
     public LocalDateTime getAddTime() {
@@ -96,6 +178,14 @@ public class Goods {
         this.addTime = addTime;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -103,14 +193,23 @@ public class Goods {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", uid=").append(uid);
+        sb.append(", type=").append(type);
         sb.append(", categoryId=").append(categoryId);
         sb.append(", name=").append(name);
-        sb.append(", description=").append(description);
         sb.append(", price=").append(price);
+        sb.append(", normalPrice=").append(normalPrice);
+        sb.append(", discount=").append(discount);
+        sb.append(", degreeId=").append(degreeId);
+        sb.append(", banner=").append(banner);
         sb.append(", images=").append(images);
-        sb.append(", detail=").append(detail);
+        sb.append(", props=").append(props);
+        sb.append(", quantity=").append(quantity);
         sb.append(", status=").append(status);
+        sb.append(", isOnSale=").append(isOnSale);
+        sb.append(", view=").append(view);
         sb.append(", addTime=").append(addTime);
+        sb.append(", description=").append(description);
         sb.append("]");
         return sb.toString();
     }
@@ -128,14 +227,23 @@ public class Goods {
         }
         Goods other = (Goods) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
+            && (this.getNormalPrice() == null ? other.getNormalPrice() == null : this.getNormalPrice().equals(other.getNormalPrice()))
+            && (this.getDiscount() == null ? other.getDiscount() == null : this.getDiscount().equals(other.getDiscount()))
+            && (this.getDegreeId() == null ? other.getDegreeId() == null : this.getDegreeId().equals(other.getDegreeId()))
+            && (this.getBanner() == null ? other.getBanner() == null : this.getBanner().equals(other.getBanner()))
             && (Arrays.equals(this.getImages(), other.getImages()))
-            && (this.getDetail() == null ? other.getDetail() == null : this.getDetail().equals(other.getDetail()))
+            && (this.getProps() == null ? other.getProps() == null : this.getProps().equals(other.getProps()))
+            && (this.getQuantity() == null ? other.getQuantity() == null : this.getQuantity().equals(other.getQuantity()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
+            && (this.getIsOnSale() == null ? other.getIsOnSale() == null : this.getIsOnSale().equals(other.getIsOnSale()))
+            && (this.getView() == null ? other.getView() == null : this.getView().equals(other.getView()))
+            && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()))
+            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()));
     }
 
     @Override
@@ -143,27 +251,45 @@ public class Goods {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
+        result = prime * result + ((getNormalPrice() == null) ? 0 : getNormalPrice().hashCode());
+        result = prime * result + ((getDiscount() == null) ? 0 : getDiscount().hashCode());
+        result = prime * result + ((getDegreeId() == null) ? 0 : getDegreeId().hashCode());
+        result = prime * result + ((getBanner() == null) ? 0 : getBanner().hashCode());
         result = prime * result + (Arrays.hashCode(getImages()));
-        result = prime * result + ((getDetail() == null) ? 0 : getDetail().hashCode());
+        result = prime * result + ((getProps() == null) ? 0 : getProps().hashCode());
+        result = prime * result + ((getQuantity() == null) ? 0 : getQuantity().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getIsOnSale() == null) ? 0 : getIsOnSale().hashCode());
+        result = prime * result + ((getView() == null) ? 0 : getView().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
+        result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         return result;
     }
 
     public enum Column {
         id("id", "id", "INTEGER", false),
+        uid("uid", "uid", "INTEGER", true),
+        type("type", "type", "TINYINT", true),
         categoryId("category_id", "categoryId", "INTEGER", false),
         name("name", "name", "VARCHAR", true),
-        description("description", "description", "VARCHAR", false),
         price("price", "price", "DECIMAL", false),
+        normalPrice("normal_price", "normalPrice", "DECIMAL", false),
+        discount("discount", "discount", "TINYINT", false),
+        degreeId("degree_id", "degreeId", "TINYINT", false),
+        banner("banner", "banner", "VARCHAR", false),
         images("images", "images", "VARCHAR", false),
-        detail("detail", "detail", "VARCHAR", false),
-        status("status", "status", "BIT", true),
-        addTime("add_time", "addTime", "TIMESTAMP", false);
+        props("props", "props", "VARCHAR", false),
+        quantity("quantity", "quantity", "INTEGER", false),
+        status("status", "status", "TINYINT", true),
+        isOnSale("is_on_sale", "isOnSale", "TINYINT", false),
+        view("view", "view", "INTEGER", true),
+        addTime("add_time", "addTime", "TIMESTAMP", false),
+        description("description", "description", "LONGVARCHAR", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

@@ -3,14 +3,25 @@
 <mapper namespace="com.mall.db.dao.GoodsMapper">
   <resultMap id="BaseResultMap" type="com.mall.db.domain.Goods">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="type" jdbcType="TINYINT" property="type" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="normal_price" jdbcType="DECIMAL" property="normalPrice" />
+    <result column="discount" jdbcType="TINYINT" property="discount" />
+    <result column="degree_id" jdbcType="TINYINT" property="degreeId" />
+    <result column="banner" jdbcType="VARCHAR" property="banner" />
     <result column="images" jdbcType="VARCHAR" property="images" typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler" />
-    <result column="detail" jdbcType="VARCHAR" property="detail" />
-    <result column="status" jdbcType="BIT" property="status" />
+    <result column="props" jdbcType="VARCHAR" property="props" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_on_sale" jdbcType="TINYINT" property="isOnSale" />
+    <result column="view" jdbcType="INTEGER" property="view" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mall.db.domain.Goods">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -109,8 +120,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, category_id, `name`, description, price, images, detail, `status`, add_time
+    id, `uid`, `type`, category_id, `name`, price, normal_price, discount, degree_id, 
+    banner, images, props, quantity, `status`, is_on_sale, `view`, add_time
   </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.mall.db.domain.GoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.mall.db.domain.GoodsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -125,7 +156,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+  <select id="selectByExampleSelective" parameterType="map" resultMap="ResultMapWithBLOBs">
     select
     <if test="example != null and example.distinct">
       distinct
@@ -138,6 +169,8 @@
       </when>
       <otherwise>
         <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
       </otherwise>
     </choose>
     from goods
@@ -148,13 +181,15 @@
       order by ${example.orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from goods
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="ResultMapWithBLOBs">
     select
     <choose>
       <when test="selective != null and selective.length > 0">
@@ -164,6 +199,8 @@
       </when>
       <otherwise>
         <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
       </otherwise>
     </choose>
     from goods
@@ -183,14 +220,20 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into goods (category_id, `name`, description, 
-      price, images, 
-      detail, `status`, add_time
-      )
-    values (#{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DECIMAL}, #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler}, 
-      #{detail,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}
-      )
+    insert into goods (`uid`, `type`, category_id, 
+      `name`, price, normal_price, 
+      discount, degree_id, banner, 
+      images, 
+      props, quantity, `status`, 
+      is_on_sale, `view`, add_time, 
+      description)
+    values (#{uid,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{categoryId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{normalPrice,jdbcType=DECIMAL}, 
+      #{discount,jdbcType=TINYINT}, #{degreeId,jdbcType=TINYINT}, #{banner,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler}, 
+      #{props,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{isOnSale,jdbcType=TINYINT}, #{view,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mall.db.domain.Goods">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -198,55 +241,109 @@
     </selectKey>
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
       <if test="categoryId != null">
         category_id,
       </if>
       <if test="name != null">
         `name`,
       </if>
-      <if test="description != null">
-        description,
-      </if>
       <if test="price != null">
         price,
+      </if>
+      <if test="normalPrice != null">
+        normal_price,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="degreeId != null">
+        degree_id,
+      </if>
+      <if test="banner != null">
+        banner,
       </if>
       <if test="images != null">
         images,
       </if>
-      <if test="detail != null">
-        detail,
+      <if test="props != null">
+        props,
+      </if>
+      <if test="quantity != null">
+        quantity,
       </if>
       <if test="status != null">
         `status`,
       </if>
+      <if test="isOnSale != null">
+        is_on_sale,
+      </if>
+      <if test="view != null">
+        `view`,
+      </if>
       <if test="addTime != null">
         add_time,
       </if>
+      <if test="description != null">
+        description,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
       <if test="categoryId != null">
         #{categoryId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="normalPrice != null">
+        #{normalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=TINYINT},
+      </if>
+      <if test="degreeId != null">
+        #{degreeId,jdbcType=TINYINT},
+      </if>
+      <if test="banner != null">
+        #{banner,jdbcType=VARCHAR},
       </if>
       <if test="images != null">
         #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
       </if>
-      <if test="detail != null">
-        #{detail,jdbcType=VARCHAR},
+      <if test="props != null">
+        #{props,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
       </if>
       <if test="status != null">
-        #{status,jdbcType=BIT},
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isOnSale != null">
+        #{isOnSale,jdbcType=TINYINT},
+      </if>
+      <if test="view != null">
+        #{view,jdbcType=INTEGER},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -262,31 +359,82 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.uid != null">
+        `uid` = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=TINYINT},
+      </if>
       <if test="record.categoryId != null">
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
-      </if>
       <if test="record.price != null">
         price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.normalPrice != null">
+        normal_price = #{record.normalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discount != null">
+        discount = #{record.discount,jdbcType=TINYINT},
+      </if>
+      <if test="record.degreeId != null">
+        degree_id = #{record.degreeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.banner != null">
+        banner = #{record.banner,jdbcType=VARCHAR},
       </if>
       <if test="record.images != null">
         images = #{record.images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
       </if>
-      <if test="record.detail != null">
-        detail = #{record.detail,jdbcType=VARCHAR},
+      <if test="record.props != null">
+        props = #{record.props,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantity != null">
+        quantity = #{record.quantity,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
-        `status` = #{record.status,jdbcType=BIT},
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.isOnSale != null">
+        is_on_sale = #{record.isOnSale,jdbcType=TINYINT},
+      </if>
+      <if test="record.view != null">
+        `view` = #{record.view,jdbcType=INTEGER},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update goods
+    set id = #{record.id,jdbcType=INTEGER},
+      `uid` = #{record.uid,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=TINYINT},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      normal_price = #{record.normalPrice,jdbcType=DECIMAL},
+      discount = #{record.discount,jdbcType=TINYINT},
+      degree_id = #{record.degreeId,jdbcType=TINYINT},
+      banner = #{record.banner,jdbcType=VARCHAR},
+      images = #{record.images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
+      props = #{record.props,jdbcType=VARCHAR},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=TINYINT},
+      is_on_sale = #{record.isOnSale,jdbcType=TINYINT},
+      `view` = #{record.view,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -294,13 +442,21 @@
   <update id="updateByExample" parameterType="map">
     update goods
     set id = #{record.id,jdbcType=INTEGER},
+      `uid` = #{record.uid,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=TINYINT},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
+      normal_price = #{record.normalPrice,jdbcType=DECIMAL},
+      discount = #{record.discount,jdbcType=TINYINT},
+      degree_id = #{record.degreeId,jdbcType=TINYINT},
+      banner = #{record.banner,jdbcType=VARCHAR},
       images = #{record.images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
-      detail = #{record.detail,jdbcType=VARCHAR},
-      `status` = #{record.status,jdbcType=BIT},
+      props = #{record.props,jdbcType=VARCHAR},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=TINYINT},
+      is_on_sale = #{record.isOnSale,jdbcType=TINYINT},
+      `view` = #{record.view,jdbcType=INTEGER},
       add_time = #{record.addTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -309,42 +465,98 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.mall.db.domain.Goods">
     update goods
     <set>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
       <if test="categoryId != null">
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
-      </if>
       <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="normalPrice != null">
+        normal_price = #{normalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=TINYINT},
+      </if>
+      <if test="degreeId != null">
+        degree_id = #{degreeId,jdbcType=TINYINT},
+      </if>
+      <if test="banner != null">
+        banner = #{banner,jdbcType=VARCHAR},
       </if>
       <if test="images != null">
         images = #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
       </if>
-      <if test="detail != null">
-        detail = #{detail,jdbcType=VARCHAR},
+      <if test="props != null">
+        props = #{props,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=BIT},
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isOnSale != null">
+        is_on_sale = #{isOnSale,jdbcType=TINYINT},
+      </if>
+      <if test="view != null">
+        `view` = #{view,jdbcType=INTEGER},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mall.db.domain.Goods">
+    update goods
+    set `uid` = #{uid,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=TINYINT},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      normal_price = #{normalPrice,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=TINYINT},
+      degree_id = #{degreeId,jdbcType=TINYINT},
+      banner = #{banner,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
+      props = #{props,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      is_on_sale = #{isOnSale,jdbcType=TINYINT},
+      `view` = #{view,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mall.db.domain.Goods">
     update goods
-    set category_id = #{categoryId,jdbcType=INTEGER},
+    set `uid` = #{uid,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=TINYINT},
+      category_id = #{categoryId,jdbcType=INTEGER},
       `name` = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
+      normal_price = #{normalPrice,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=TINYINT},
+      degree_id = #{degreeId,jdbcType=TINYINT},
+      banner = #{banner,jdbcType=VARCHAR},
       images = #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler},
-      detail = #{detail,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=BIT},
+      props = #{props,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      is_on_sale = #{isOnSale,jdbcType=TINYINT},
+      `view` = #{view,jdbcType=INTEGER},
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -360,7 +572,21 @@
     </if>
     limit 1
   </select>
-  <select id="selectOneByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+  <select id="selectOneByExampleWithBLOBs" parameterType="com.mall.db.domain.GoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    limit 1
+  </select>
+  <select id="selectOneByExampleSelective" parameterType="map" resultMap="ResultMapWithBLOBs">
     select
     <choose>
       <when test="selective != null and selective.length > 0">
@@ -370,6 +596,8 @@
       </when>
       <otherwise>
         <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
       </otherwise>
     </choose>
     from goods

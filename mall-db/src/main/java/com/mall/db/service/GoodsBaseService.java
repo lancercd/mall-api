@@ -25,7 +25,6 @@ public class GoodsBaseService extends BaseService {
             Column.description,
             Column.price,
             Column.categoryId,
-            Column.detail,
             Column.status
     };
 
@@ -42,7 +41,7 @@ public class GoodsBaseService extends BaseService {
             if (Column.name.value().equals(type)) {
                 criteria.andNameLike('%' + key + '%');
             } else if (Column.description.value().equals(type)) {
-                criteria.andDescriptionLike('%' + key + '%');
+                // criteria.andDescriptionLike('%' + key + '%');
             }
         }
 
@@ -51,6 +50,25 @@ public class GoodsBaseService extends BaseService {
         PageHelper.startPage(currentPageNum, pageSize);
 
         return goodsMapper.selectByExampleSelective(example, list);
+    }
+
+    public List<Goods> querySelective(Integer currentPageNum, Integer pageSize, String type, String key) {
+        GoodsExample example = new GoodsExample();
+        GoodsExample.Criteria criteria = example.createCriteria();
+
+        if (!StringUtil.isEmpty(type)) {
+            if (Column.name.value().equals(type)) {
+                criteria.andNameLike('%' + key + '%');
+            } else if (Column.description.value().equals(type)) {
+                // criteria.andDescriptionLike('%' + key + '%');
+            }
+        }
+
+        example.orderBy(Column.addTime.desc());
+
+        PageHelper.startPage(currentPageNum, pageSize);
+
+        return goodsMapper.selectByExampleSelective(example);
     }
 
     public boolean update(Goods goods) {

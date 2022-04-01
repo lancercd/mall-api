@@ -32,12 +32,12 @@ public class AdminAuthController {
             return ResponseUtil.fail("用户不存在!");
         }
 
-        String correctPwd = adminUser.getPwd();
+        String correctPwd = adminUser.getPassword();
         if (!correctPwd.equals(admin.getPwd())) {
             return ResponseUtil.fail("密码错误!");
         }
 
-        adminUser.setPwd(null);
+        adminUser.setPassword(null);
 
         // TODO token
         Map<String, Object> res = new HashMap<>();

@@ -55,6 +55,31 @@ public class FileUploadApi {
             return ResponseEntity.badRequest().build();
         }
 
+        return this.getFile(path);
+    }
+
+    /**
+     * 访问存储对象
+     * @param fileName 存储对象filename
+     * @return ResponseEntity<Resource>
+     */
+    @GetMapping("/storage/fetch/{type}/{fileName:.+}")
+    public ResponseEntity<Resource> localFetch(@PathVariable String type,
+                                               @PathVariable String fileName
+    ) {
+
+        String path = "img/" + type + '/' + fileName;
+
+        if (type == null || fileName == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (type.contains("../") || type.contains("./")) {
+            return ResponseEntity.badRequest().build();
+        }
+        return this.getFile(path);
+    }
+
+    private ResponseEntity<Resource> getFile(String path) {
         Resource file = null;
         try {
             file = storageService.loadAsResource(path);

@@ -1,17 +1,24 @@
 package com.mall.db.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Category {
+public class OrderDetail {
     private Integer id;
 
-    private String img;
+    private Integer uid;
 
-    private String name;
+    private Integer orderId;
 
-    private Short sort;
+    private Integer goodsId;
+
+    private BigDecimal price;
+
+    private Integer num;
+
+    private Byte status;
 
     private LocalDateTime addTime;
 
@@ -23,28 +30,52 @@ public class Category {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public Short getSort() {
-        return sort;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setSort(Short sort) {
-        this.sort = sort;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
     public LocalDateTime getAddTime() {
@@ -62,9 +93,12 @@ public class Category {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", img=").append(img);
-        sb.append(", name=").append(name);
-        sb.append(", sort=").append(sort);
+        sb.append(", uid=").append(uid);
+        sb.append(", orderId=").append(orderId);
+        sb.append(", goodsId=").append(goodsId);
+        sb.append(", price=").append(price);
+        sb.append(", num=").append(num);
+        sb.append(", status=").append(status);
         sb.append(", addTime=").append(addTime);
         sb.append("]");
         return sb.toString();
@@ -81,11 +115,14 @@ public class Category {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Category other = (Category) that;
+        OrderDetail other = (OrderDetail) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getImg() == null ? other.getImg() == null : this.getImg().equals(other.getImg()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
+            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
+            && (this.getGoodsId() == null ? other.getGoodsId() == null : this.getGoodsId().equals(other.getGoodsId()))
+            && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
+            && (this.getNum() == null ? other.getNum() == null : this.getNum().equals(other.getNum()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
     }
 
@@ -94,18 +131,24 @@ public class Category {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getImg() == null) ? 0 : getImg().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
+        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+        result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
+        result = prime * result + ((getGoodsId() == null) ? 0 : getGoodsId().hashCode());
+        result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
+        result = prime * result + ((getNum() == null) ? 0 : getNum().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
         return result;
     }
 
     public enum Column {
         id("id", "id", "INTEGER", false),
-        img("img", "img", "VARCHAR", false),
-        name("name", "name", "VARCHAR", true),
-        sort("sort", "sort", "SMALLINT", false),
+        uid("uid", "uid", "INTEGER", true),
+        orderId("order_id", "orderId", "INTEGER", false),
+        goodsId("goods_id", "goodsId", "INTEGER", false),
+        price("price", "price", "DECIMAL", false),
+        num("num", "num", "INTEGER", false),
+        status("status", "status", "TINYINT", true),
         addTime("add_time", "addTime", "TIMESTAMP", false);
 
         private static final String BEGINNING_DELIMITER = "`";

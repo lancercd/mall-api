@@ -1,19 +1,22 @@
 package com.mall.db.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Category {
+public class Order {
     private Integer id;
 
-    private String img;
+    private Integer uid;
 
-    private String name;
+    private BigDecimal totalPrice;
 
-    private Short sort;
+    private Short status;
 
     private LocalDateTime addTime;
+
+    private LocalDateTime finishTime;
 
     public Integer getId() {
         return id;
@@ -23,28 +26,28 @@ public class Category {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public Short getSort() {
-        return sort;
+    public Short getStatus() {
+        return status;
     }
 
-    public void setSort(Short sort) {
-        this.sort = sort;
+    public void setStatus(Short status) {
+        this.status = status;
     }
 
     public LocalDateTime getAddTime() {
@@ -55,6 +58,14 @@ public class Category {
         this.addTime = addTime;
     }
 
+    public LocalDateTime getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(LocalDateTime finishTime) {
+        this.finishTime = finishTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -62,10 +73,11 @@ public class Category {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", img=").append(img);
-        sb.append(", name=").append(name);
-        sb.append(", sort=").append(sort);
+        sb.append(", uid=").append(uid);
+        sb.append(", totalPrice=").append(totalPrice);
+        sb.append(", status=").append(status);
         sb.append(", addTime=").append(addTime);
+        sb.append(", finishTime=").append(finishTime);
         sb.append("]");
         return sb.toString();
     }
@@ -81,12 +93,13 @@ public class Category {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Category other = (Category) that;
+        Order other = (Order) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getImg() == null ? other.getImg() == null : this.getImg().equals(other.getImg()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
-            && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
+            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getTotalPrice() == null ? other.getTotalPrice() == null : this.getTotalPrice().equals(other.getTotalPrice()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()))
+            && (this.getFinishTime() == null ? other.getFinishTime() == null : this.getFinishTime().equals(other.getFinishTime()));
     }
 
     @Override
@@ -94,19 +107,21 @@ public class Category {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getImg() == null) ? 0 : getImg().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
+        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+        result = prime * result + ((getTotalPrice() == null) ? 0 : getTotalPrice().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
+        result = prime * result + ((getFinishTime() == null) ? 0 : getFinishTime().hashCode());
         return result;
     }
 
     public enum Column {
         id("id", "id", "INTEGER", false),
-        img("img", "img", "VARCHAR", false),
-        name("name", "name", "VARCHAR", true),
-        sort("sort", "sort", "SMALLINT", false),
-        addTime("add_time", "addTime", "TIMESTAMP", false);
+        uid("uid", "uid", "INTEGER", true),
+        totalPrice("total_price", "totalPrice", "DECIMAL", false),
+        status("status", "status", "SMALLINT", true),
+        addTime("add_time", "addTime", "TIMESTAMP", false),
+        finishTime("finish_time", "finishTime", "TIMESTAMP", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

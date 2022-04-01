@@ -1,19 +1,14 @@
 package com.mall.db.domain;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Category {
+public class Banner {
     private Integer id;
 
-    private String img;
-
-    private String name;
+    private String url;
 
     private Short sort;
-
-    private LocalDateTime addTime;
 
     public Integer getId() {
         return id;
@@ -23,20 +18,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Short getSort() {
@@ -47,14 +34,6 @@ public class Category {
         this.sort = sort;
     }
 
-    public LocalDateTime getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(LocalDateTime addTime) {
-        this.addTime = addTime;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -62,10 +41,8 @@ public class Category {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", img=").append(img);
-        sb.append(", name=").append(name);
+        sb.append(", url=").append(url);
         sb.append(", sort=").append(sort);
-        sb.append(", addTime=").append(addTime);
         sb.append("]");
         return sb.toString();
     }
@@ -81,12 +58,10 @@ public class Category {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Category other = (Category) that;
+        Banner other = (Banner) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getImg() == null ? other.getImg() == null : this.getImg().equals(other.getImg()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
-            && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
+            && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
+            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()));
     }
 
     @Override
@@ -94,19 +69,15 @@ public class Category {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getImg() == null) ? 0 : getImg().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
         result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
-        result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
         return result;
     }
 
     public enum Column {
         id("id", "id", "INTEGER", false),
-        img("img", "img", "VARCHAR", false),
-        name("name", "name", "VARCHAR", true),
-        sort("sort", "sort", "SMALLINT", false),
-        addTime("add_time", "addTime", "TIMESTAMP", false);
+        url("url", "url", "VARCHAR", false),
+        sort("sort", "sort", "SMALLINT", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

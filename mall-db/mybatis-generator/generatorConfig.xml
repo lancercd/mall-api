@@ -80,24 +80,12 @@
 
         <!-- 表 -->
         <!--
-        <table tableName="litemall_goods">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="gallery" javaType="java.lang.String[]"
-                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
-        </table>
-
-        <table tableName="litemall_goods_product">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="specifications" javaType="java.lang.String[]"
-                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
-        </table>
         <table tableName="litemall_order_goods">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="specifications" javaType="java.lang.String[]"
                             typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
             <columnOverride column="comments" javaType="java.lang.Integer[]"
                             typeHandler="com.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>
-
         </table>
 
         <table tableName="consignment_discuss_price">
@@ -109,21 +97,57 @@
 <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--        </table>-->
 
-<!--        <table tableName="admin">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
+        <table tableName="admin">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="role_ids" javaType="java.lang.Integer[]"
+                            typeHandler="com.mall.db.mybatis.JsonIntegerArrayTypeHandler"/>
+        </table>
 
-<!--        <table tableName="category">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
+        <table tableName="banner">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-<!--        <table tableName="goods">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--            <columnOverride column="images" javaType="java.lang.String[]"-->
+        <table tableName="cart">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="category">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="goods">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="images" javaType="java.lang.String[]"
+                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
+<!--            <columnOverride column="props" javaType="java.util.Map[]"-->
 <!--                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--        </table>-->
+        </table>
+
+        <table tableName="order">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="order_detail">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="permission">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="role">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
         <table tableName="school">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="system">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="user">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 

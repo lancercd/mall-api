@@ -55,7 +55,7 @@ public class AdminGoodsService {
      * @return list and total
      */
     public Map<String, Object> list(Integer currentPageNum, Integer pageSize, String type, String key) {
-        List<Goods> goods = goodsBaseService.querySelectiveSimple(currentPageNum, pageSize, type, key);
+        List<Goods> goods = goodsBaseService.querySelective(currentPageNum, pageSize, type, key);
         long total = PageInfo.of(goods).getTotal();
         Map<String, Object> data = new HashMap<>();
         data.put("total", total);
@@ -70,7 +70,7 @@ public class AdminGoodsService {
      * @param status    状态
      * @return boolean
      */
-    public boolean changeState(Integer id, Boolean status) {
+    public boolean changeState(Integer id, Byte status) {
         if (null == id || null == status || null == goodsBaseService.findById(id)) {
             throw new ServiceBadArgumentException("参数错误!");
         }
@@ -89,12 +89,12 @@ public class AdminGoodsService {
      */
     private boolean imageUrlsValidate(Goods goods) {
 
-        String[] images = goods.getImages();
-        if(null == images) return false;
-
-        for (String image : images) {
-            if (!RegexUtil.isImageUrl(image)) return false;
-        }
+        // String[] images = goods.getImages();
+        // if(null == images) return false;
+        //
+        // for (String image : images) {
+        //     if (!RegexUtil.isImageUrl(image)) return false;
+        // }
 
         return true;
     }

@@ -1,17 +1,18 @@
 package com.mall.db.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryExample {
+public class OrderExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CategoryExample() {
+    public OrderExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -45,12 +46,12 @@ public class CategoryExample {
         return criteria;
     }
 
-    public CategoryExample orderBy(String orderByClause) {
+    public OrderExample orderBy(String orderByClause) {
         this.setOrderByClause(orderByClause);
         return this;
     }
 
-    public CategoryExample orderBy(String ... orderByClauses) {
+    public OrderExample orderBy(String ... orderByClauses) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < orderByClauses.length; i++) {
             sb.append(orderByClauses[i]);
@@ -82,18 +83,18 @@ public class CategoryExample {
     }
 
     public static Criteria newAndCreateCriteria() {
-        CategoryExample example = new CategoryExample();
+        OrderExample example = new OrderExample();
         return example.createCriteria();
     }
 
-    public CategoryExample when(boolean condition, IExampleWhen then) {
+    public OrderExample when(boolean condition, IExampleWhen then) {
         if (condition) {
             then.example(this);
         }
         return this;
     }
 
-    public CategoryExample when(boolean condition, IExampleWhen then, IExampleWhen otherwise) {
+    public OrderExample when(boolean condition, IExampleWhen then, IExampleWhen otherwise) {
         if (condition) {
             then.example(this);
         } else {
@@ -102,7 +103,7 @@ public class CategoryExample {
         return this;
     }
 
-    public CategoryExample distinct(boolean distinct) {
+    public OrderExample distinct(boolean distinct) {
         this.setDistinct(distinct);
         return this;
     }
@@ -163,7 +164,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualToColumn(Category.Column column) {
+        public Criteria andIdEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("id = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -173,7 +174,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualToColumn(Category.Column column) {
+        public Criteria andIdNotEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("id <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -183,7 +184,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanColumn(Category.Column column) {
+        public Criteria andIdGreaterThanColumn(Order.Column column) {
             addCriterion(new StringBuilder("id > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -193,7 +194,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualToColumn(Category.Column column) {
+        public Criteria andIdGreaterThanOrEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("id >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -203,7 +204,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanColumn(Category.Column column) {
+        public Criteria andIdLessThanColumn(Order.Column column) {
             addCriterion(new StringBuilder("id < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -213,7 +214,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualToColumn(Category.Column column) {
+        public Criteria andIdLessThanOrEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("id <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -238,293 +239,273 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andImgIsNull() {
-            addCriterion("img is null");
+        public Criteria andUidIsNull() {
+            addCriterion("`uid` is null");
             return (Criteria) this;
         }
 
-        public Criteria andImgIsNotNull() {
-            addCriterion("img is not null");
+        public Criteria andUidIsNotNull() {
+            addCriterion("`uid` is not null");
             return (Criteria) this;
         }
 
-        public Criteria andImgEqualTo(String value) {
-            addCriterion("img =", value, "img");
+        public Criteria andUidEqualTo(Integer value) {
+            addCriterion("`uid` =", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("img = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUidEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`uid` = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andImgNotEqualTo(String value) {
-            addCriterion("img <>", value, "img");
+        public Criteria andUidNotEqualTo(Integer value) {
+            addCriterion("`uid` <>", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgNotEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("img <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUidNotEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`uid` <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andImgGreaterThan(String value) {
-            addCriterion("img >", value, "img");
+        public Criteria andUidGreaterThan(Integer value) {
+            addCriterion("`uid` >", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgGreaterThanColumn(Category.Column column) {
-            addCriterion(new StringBuilder("img > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUidGreaterThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`uid` > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andImgGreaterThanOrEqualTo(String value) {
-            addCriterion("img >=", value, "img");
+        public Criteria andUidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`uid` >=", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgGreaterThanOrEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("img >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUidGreaterThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`uid` >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andImgLessThan(String value) {
-            addCriterion("img <", value, "img");
+        public Criteria andUidLessThan(Integer value) {
+            addCriterion("`uid` <", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgLessThanColumn(Category.Column column) {
-            addCriterion(new StringBuilder("img < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUidLessThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`uid` < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andImgLessThanOrEqualTo(String value) {
-            addCriterion("img <=", value, "img");
+        public Criteria andUidLessThanOrEqualTo(Integer value) {
+            addCriterion("`uid` <=", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgLessThanOrEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("img <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUidLessThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`uid` <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andImgLike(String value) {
-            addCriterion("img like", value, "img");
+        public Criteria andUidIn(List<Integer> values) {
+            addCriterion("`uid` in", values, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgNotLike(String value) {
-            addCriterion("img not like", value, "img");
+        public Criteria andUidNotIn(List<Integer> values) {
+            addCriterion("`uid` not in", values, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgIn(List<String> values) {
-            addCriterion("img in", values, "img");
+        public Criteria andUidBetween(Integer value1, Integer value2) {
+            addCriterion("`uid` between", value1, value2, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgNotIn(List<String> values) {
-            addCriterion("img not in", values, "img");
+        public Criteria andUidNotBetween(Integer value1, Integer value2) {
+            addCriterion("`uid` not between", value1, value2, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andImgBetween(String value1, String value2) {
-            addCriterion("img between", value1, value2, "img");
+        public Criteria andTotalPriceIsNull() {
+            addCriterion("total_price is null");
             return (Criteria) this;
         }
 
-        public Criteria andImgNotBetween(String value1, String value2) {
-            addCriterion("img not between", value1, value2, "img");
+        public Criteria andTotalPriceIsNotNull() {
+            addCriterion("total_price is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("`name` is null");
+        public Criteria andTotalPriceEqualTo(BigDecimal value) {
+            addCriterion("total_price =", value, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("`name` is not null");
+        public Criteria andTotalPriceEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("total_price = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("`name` =", value, "name");
+        public Criteria andTotalPriceNotEqualTo(BigDecimal value) {
+            addCriterion("total_price <>", value, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("`name` = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andTotalPriceNotEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("total_price <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("`name` <>", value, "name");
+        public Criteria andTotalPriceGreaterThan(BigDecimal value) {
+            addCriterion("total_price >", value, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("`name` <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andTotalPriceGreaterThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("total_price > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("`name` >", value, "name");
+        public Criteria andTotalPriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("total_price >=", value, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanColumn(Category.Column column) {
-            addCriterion(new StringBuilder("`name` > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andTotalPriceGreaterThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("total_price >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("`name` >=", value, "name");
+        public Criteria andTotalPriceLessThan(BigDecimal value) {
+            addCriterion("total_price <", value, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("`name` >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andTotalPriceLessThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("total_price < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("`name` <", value, "name");
+        public Criteria andTotalPriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("total_price <=", value, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanColumn(Category.Column column) {
-            addCriterion(new StringBuilder("`name` < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andTotalPriceLessThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("total_price <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("`name` <=", value, "name");
+        public Criteria andTotalPriceIn(List<BigDecimal> values) {
+            addCriterion("total_price in", values, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("`name` <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andTotalPriceNotIn(List<BigDecimal> values) {
+            addCriterion("total_price not in", values, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("`name` like", value, "name");
+        public Criteria andTotalPriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("total_price between", value1, value2, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("`name` not like", value, "name");
+        public Criteria andTotalPriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("total_price not between", value1, value2, "totalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("`name` in", values, "name");
+        public Criteria andStatusIsNull() {
+            addCriterion("`status` is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("`name` not in", values, "name");
+        public Criteria andStatusIsNotNull() {
+            addCriterion("`status` is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("`name` between", value1, value2, "name");
+        public Criteria andStatusEqualTo(Short value) {
+            addCriterion("`status` =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("`name` not between", value1, value2, "name");
+        public Criteria andStatusEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`status` = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andSortIsNull() {
-            addCriterion("sort is null");
+        public Criteria andStatusNotEqualTo(Short value) {
+            addCriterion("`status` <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortIsNotNull() {
-            addCriterion("sort is not null");
+        public Criteria andStatusNotEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`status` <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andSortEqualTo(Short value) {
-            addCriterion("sort =", value, "sort");
+        public Criteria andStatusGreaterThan(Short value) {
+            addCriterion("`status` >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("sort = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andStatusGreaterThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`status` > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andSortNotEqualTo(Short value) {
-            addCriterion("sort <>", value, "sort");
+        public Criteria andStatusGreaterThanOrEqualTo(Short value) {
+            addCriterion("`status` >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortNotEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("sort <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andStatusGreaterThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`status` >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andSortGreaterThan(Short value) {
-            addCriterion("sort >", value, "sort");
+        public Criteria andStatusLessThan(Short value) {
+            addCriterion("`status` <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortGreaterThanColumn(Category.Column column) {
-            addCriterion(new StringBuilder("sort > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andStatusLessThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`status` < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andSortGreaterThanOrEqualTo(Short value) {
-            addCriterion("sort >=", value, "sort");
+        public Criteria andStatusLessThanOrEqualTo(Short value) {
+            addCriterion("`status` <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortGreaterThanOrEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("sort >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andStatusLessThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("`status` <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andSortLessThan(Short value) {
-            addCriterion("sort <", value, "sort");
+        public Criteria andStatusIn(List<Short> values) {
+            addCriterion("`status` in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortLessThanColumn(Category.Column column) {
-            addCriterion(new StringBuilder("sort < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andStatusNotIn(List<Short> values) {
+            addCriterion("`status` not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortLessThanOrEqualTo(Short value) {
-            addCriterion("sort <=", value, "sort");
+        public Criteria andStatusBetween(Short value1, Short value2) {
+            addCriterion("`status` between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andSortLessThanOrEqualToColumn(Category.Column column) {
-            addCriterion(new StringBuilder("sort <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andSortIn(List<Short> values) {
-            addCriterion("sort in", values, "sort");
-            return (Criteria) this;
-        }
-
-        public Criteria andSortNotIn(List<Short> values) {
-            addCriterion("sort not in", values, "sort");
-            return (Criteria) this;
-        }
-
-        public Criteria andSortBetween(Short value1, Short value2) {
-            addCriterion("sort between", value1, value2, "sort");
-            return (Criteria) this;
-        }
-
-        public Criteria andSortNotBetween(Short value1, Short value2) {
-            addCriterion("sort not between", value1, value2, "sort");
+        public Criteria andStatusNotBetween(Short value1, Short value2) {
+            addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
 
@@ -543,7 +524,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeEqualToColumn(Category.Column column) {
+        public Criteria andAddTimeEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("add_time = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -553,7 +534,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotEqualToColumn(Category.Column column) {
+        public Criteria andAddTimeNotEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("add_time <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -563,7 +544,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThanColumn(Category.Column column) {
+        public Criteria andAddTimeGreaterThanColumn(Order.Column column) {
             addCriterion(new StringBuilder("add_time > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -573,7 +554,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThanOrEqualToColumn(Category.Column column) {
+        public Criteria andAddTimeGreaterThanOrEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("add_time >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -583,7 +564,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThanColumn(Category.Column column) {
+        public Criteria andAddTimeLessThanColumn(Order.Column column) {
             addCriterion(new StringBuilder("add_time < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -593,7 +574,7 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThanOrEqualToColumn(Category.Column column) {
+        public Criteria andAddTimeLessThanOrEqualToColumn(Order.Column column) {
             addCriterion(new StringBuilder("add_time <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
@@ -617,17 +598,107 @@ public class CategoryExample {
             addCriterion("add_time not between", value1, value2, "addTime");
             return (Criteria) this;
         }
+
+        public Criteria andFinishTimeIsNull() {
+            addCriterion("finish_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeIsNotNull() {
+            addCriterion("finish_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeEqualTo(LocalDateTime value) {
+            addCriterion("finish_time =", value, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("finish_time = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeNotEqualTo(LocalDateTime value) {
+            addCriterion("finish_time <>", value, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeNotEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("finish_time <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeGreaterThan(LocalDateTime value) {
+            addCriterion("finish_time >", value, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeGreaterThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("finish_time > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeGreaterThanOrEqualTo(LocalDateTime value) {
+            addCriterion("finish_time >=", value, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeGreaterThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("finish_time >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeLessThan(LocalDateTime value) {
+            addCriterion("finish_time <", value, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeLessThanColumn(Order.Column column) {
+            addCriterion(new StringBuilder("finish_time < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeLessThanOrEqualTo(LocalDateTime value) {
+            addCriterion("finish_time <=", value, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeLessThanOrEqualToColumn(Order.Column column) {
+            addCriterion(new StringBuilder("finish_time <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeIn(List<LocalDateTime> values) {
+            addCriterion("finish_time in", values, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeNotIn(List<LocalDateTime> values) {
+            addCriterion("finish_time not in", values, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("finish_time between", value1, value2, "finishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("finish_time not between", value1, value2, "finishTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
-        private CategoryExample example;
+        private OrderExample example;
 
-        protected Criteria(CategoryExample example) {
+        protected Criteria(OrderExample example) {
             super();
             this.example = example;
         }
 
-        public CategoryExample example() {
+        public OrderExample example() {
             return this.example;
         }
 
@@ -752,6 +823,6 @@ public class CategoryExample {
     }
 
     public interface IExampleWhen {
-        void example(com.mall.db.domain.CategoryExample example);
+        void example(com.mall.db.domain.OrderExample example);
     }
 }

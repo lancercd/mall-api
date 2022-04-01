@@ -35,7 +35,7 @@ public class AdminGoodsController {
 
 
     @GetMapping("/change/status")
-    public Object changeState(@RequestParam Integer id, @RequestParam Boolean status) {
+    public Object changeState(@RequestParam Integer id, @RequestParam Byte status) {
         if (!adminGoodsService.changeState(id, status)) {
             return ResponseUtil.updatedDataFailed();
         }

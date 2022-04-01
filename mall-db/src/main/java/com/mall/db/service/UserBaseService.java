@@ -1,13 +1,16 @@
 package com.mall.db.service;
 
+import com.github.pagehelper.PageHelper;
 import com.mall.db.dao.UserMapper;
 import com.mall.db.domain.User;
 import com.mall.db.domain.User.Column;
 import com.mall.db.domain.UserExample;
+import com.mall.db.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class UserBaseService extends BaseService {
@@ -21,6 +24,23 @@ public class UserBaseService extends BaseService {
 
     public User findById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    public List<User> querySelective(Integer currentPageNum, Integer pageSize, String type, String key) {
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+
+        if (!StringUtil.isEmpty(type)) {
+            if (User.Column.username.value().equals(type)) {
+                criteria.andUsernameLike('%' + key + '%');
+            }
+        }
+
+        example.orderBy(User.Column.addTime.desc());
+
+        PageHelper.startPage(currentPageNum, pageSize);
+
+        return userMapper.selectByExampleSelective(example);
     }
 
     public User findByUsername(String username) {

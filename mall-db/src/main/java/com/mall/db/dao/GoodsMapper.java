@@ -22,7 +22,11 @@ public interface GoodsMapper {
 
     Goods selectOneByExampleSelective(@Param("example") GoodsExample example, @Param("selective") Goods.Column ... selective);
 
+    Goods selectOneByExampleWithBLOBs(GoodsExample example);
+
     List<Goods> selectByExampleSelective(@Param("example") GoodsExample example, @Param("selective") Goods.Column ... selective);
+
+    List<Goods> selectByExampleWithBLOBs(GoodsExample example);
 
     List<Goods> selectByExample(GoodsExample example);
 
@@ -32,9 +36,13 @@ public interface GoodsMapper {
 
     int updateByExampleSelective(@Param("record") Goods record, @Param("example") GoodsExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") Goods record, @Param("example") GoodsExample example);
+
     int updateByExample(@Param("record") Goods record, @Param("example") GoodsExample example);
 
     int updateByPrimaryKeySelective(Goods record);
+
+    int updateByPrimaryKeyWithBLOBs(Goods record);
 
     int updateByPrimaryKey(Goods record);
 }

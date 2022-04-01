@@ -4,30 +4,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class User {
+public class Permission {
     public static final Boolean IS_DELETED = Deleted.IS_DELETED.value();
 
     public static final Boolean NOT_DELETED = Deleted.NOT_DELETED.value();
 
     private Integer id;
 
-    private String username;
+    private Integer roleId;
 
-    private String pwd;
-
-    private Integer schoolId;
-
-    private Byte gender;
-
-    private LocalDateTime lastLoginTime;
-
-    private String mobile;
-
-    private String avatar;
-
-    private Byte status;
+    private String permission;
 
     private LocalDateTime addTime;
+
+    private LocalDateTime updateTime;
 
     private Boolean deleted;
 
@@ -39,68 +29,20 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPermission() {
+        return permission;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public Integer getSchoolId() {
-        return schoolId;
-    }
-
-    public void setSchoolId(Integer schoolId) {
-        this.schoolId = schoolId;
-    }
-
-    public Byte getGender() {
-        return gender;
-    }
-
-    public void setGender(Byte gender) {
-        this.gender = gender;
-    }
-
-    public LocalDateTime getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(LocalDateTime lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 
     public LocalDateTime getAddTime() {
@@ -109,6 +51,14 @@ public class User {
 
     public void setAddTime(LocalDateTime addTime) {
         this.addTime = addTime;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 
     public void andLogicalDeleted(boolean deleted) {
@@ -132,15 +82,10 @@ public class User {
         sb.append(", IS_DELETED=").append(IS_DELETED);
         sb.append(", NOT_DELETED=").append(NOT_DELETED);
         sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", pwd=").append(pwd);
-        sb.append(", schoolId=").append(schoolId);
-        sb.append(", gender=").append(gender);
-        sb.append(", lastLoginTime=").append(lastLoginTime);
-        sb.append(", mobile=").append(mobile);
-        sb.append(", avatar=").append(avatar);
-        sb.append(", status=").append(status);
+        sb.append(", roleId=").append(roleId);
+        sb.append(", permission=").append(permission);
         sb.append(", addTime=").append(addTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", deleted=").append(deleted);
         sb.append("]");
         return sb.toString();
@@ -157,17 +102,12 @@ public class User {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        Permission other = (Permission) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
-            && (this.getSchoolId() == null ? other.getSchoolId() == null : this.getSchoolId().equals(other.getSchoolId()))
-            && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
-            && (this.getLastLoginTime() == null ? other.getLastLoginTime() == null : this.getLastLoginTime().equals(other.getLastLoginTime()))
-            && (this.getMobile() == null ? other.getMobile() == null : this.getMobile().equals(other.getMobile()))
-            && (this.getAvatar() == null ? other.getAvatar() == null : this.getAvatar().equals(other.getAvatar()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
+            && (this.getPermission() == null ? other.getPermission() == null : this.getPermission().equals(other.getPermission()))
             && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
             && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
     }
 
@@ -176,15 +116,10 @@ public class User {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
-        result = prime * result + ((getSchoolId() == null) ? 0 : getSchoolId().hashCode());
-        result = prime * result + ((getGender() == null) ? 0 : getGender().hashCode());
-        result = prime * result + ((getLastLoginTime() == null) ? 0 : getLastLoginTime().hashCode());
-        result = prime * result + ((getMobile() == null) ? 0 : getMobile().hashCode());
-        result = prime * result + ((getAvatar() == null) ? 0 : getAvatar().hashCode());
-        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
+        result = prime * result + ((getPermission() == null) ? 0 : getPermission().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         return result;
     }
@@ -239,15 +174,10 @@ public class User {
 
     public enum Column {
         id("id", "id", "INTEGER", false),
-        username("username", "username", "VARCHAR", false),
-        pwd("pwd", "pwd", "VARCHAR", false),
-        schoolId("school_id", "schoolId", "INTEGER", false),
-        gender("gender", "gender", "TINYINT", false),
-        lastLoginTime("last_login_time", "lastLoginTime", "TIMESTAMP", false),
-        mobile("mobile", "mobile", "VARCHAR", false),
-        avatar("avatar", "avatar", "VARCHAR", false),
-        status("status", "status", "TINYINT", true),
+        roleId("role_id", "roleId", "INTEGER", false),
+        permission("permission", "permission", "VARCHAR", false),
         addTime("add_time", "addTime", "TIMESTAMP", false),
+        updateTime("update_time", "updateTime", "TIMESTAMP", false),
         deleted("deleted", "deleted", "BIT", false);
 
         private static final String BEGINNING_DELIMITER = "`";
