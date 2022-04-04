@@ -77,7 +77,7 @@ public class GoodsBaseService extends BaseService {
 
     public boolean add(Goods goods) {
         goods.setAddTime(LocalDateTime.now());
-        return goodsMapper.insert(goods) == 1;
+        return goodsMapper.insertSelective(goods) == 1;
     }
 
     public boolean addSelective(Goods goods) {
@@ -87,6 +87,11 @@ public class GoodsBaseService extends BaseService {
 
     public boolean updateSelective(Goods goods) {
         return goodsMapper.updateByPrimaryKeySelective(goods) == 1;
+    }
+
+    public List<Goods> queryByExample(Integer currentPageNum, Integer pageSize, GoodsExample example) {
+        PageHelper.startPage(currentPageNum, pageSize);
+        return goodsMapper.selectByExampleSelective(example);
     }
 
 }

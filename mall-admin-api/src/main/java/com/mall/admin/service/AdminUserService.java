@@ -16,8 +16,8 @@ public class AdminUserService {
     @Autowired
     private UserBaseService userBaseService;
 
-    public Map<String, Object> list(Integer page, Integer size, String keywords, String order) {
-        List<User> users = userBaseService.querySelective(page, size, "username", keywords);
+    public Map<String, Object> list(Integer page, Integer size, String type, String keywords) {
+        List<User> users = userBaseService.querySelective(page, size, type, keywords);
         long total = PageInfo.of(users).getTotal();
         Map<String, Object> data = new HashMap<>();
         data.put("total", total);

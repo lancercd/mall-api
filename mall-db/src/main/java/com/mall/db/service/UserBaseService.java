@@ -30,7 +30,7 @@ public class UserBaseService extends BaseService {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
 
-        if (!StringUtil.isEmpty(type)) {
+        if (!StringUtil.isEmpty(type) && !StringUtil.isEmpty(key)) {
             if (User.Column.username.value().equals(type)) {
                 criteria.andUsernameLike('%' + key + '%');
             }
