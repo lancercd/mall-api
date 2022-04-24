@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.groups.Default;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,5 +38,22 @@ public class GoodsController {
     ) {
         goodsService.add(goods);
         return ResponseUtil.ok();
+    }
+
+
+
+    @GetMapping("/detail/{id}")
+    public Object detail(@PathVariable() Integer id) {
+        if (null == id) {
+            return ResponseUtil.fail("商品不存在");
+        }
+
+        Goods goods = goodsService.detail(id);
+
+        if (null == goods) {
+            return ResponseUtil.fail("商品不存在");
+        }
+
+        return ResponseUtil.ok(goods);
     }
 }

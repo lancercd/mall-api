@@ -119,8 +119,8 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="images" javaType="java.lang.String[]"
                             typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
-<!--            <columnOverride column="props" javaType="java.util.Map[]"-->
-<!--                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
+            <columnOverride column="props" javaType="java.util.Map[]"
+                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
 
         <table tableName="order">

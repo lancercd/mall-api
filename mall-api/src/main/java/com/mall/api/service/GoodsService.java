@@ -47,6 +47,10 @@ public class GoodsService {
         return data;
     }
 
+    public Goods detail(Integer id) {
+        return goodsBaseService.findById(id);
+    }
+
     public void add(Goods goods) {
         goods.setIsOnSale((byte)1);
         goods.setType((byte)0);
