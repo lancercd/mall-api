@@ -10,13 +10,17 @@ public class Cart {
 
     private Integer uid;
 
+    private Integer orderId;
+
     private Integer goodsId;
 
     private BigDecimal price;
 
     private Integer num;
 
-    private Boolean status;
+    private Byte status;
+
+    private LocalDateTime buyTime;
 
     private LocalDateTime addTime;
 
@@ -34,6 +38,14 @@ public class Cart {
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public Integer getGoodsId() {
@@ -60,12 +72,20 @@ public class Cart {
         this.num = num;
     }
 
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    public LocalDateTime getBuyTime() {
+        return buyTime;
+    }
+
+    public void setBuyTime(LocalDateTime buyTime) {
+        this.buyTime = buyTime;
     }
 
     public LocalDateTime getAddTime() {
@@ -84,10 +104,12 @@ public class Cart {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", uid=").append(uid);
+        sb.append(", orderId=").append(orderId);
         sb.append(", goodsId=").append(goodsId);
         sb.append(", price=").append(price);
         sb.append(", num=").append(num);
         sb.append(", status=").append(status);
+        sb.append(", buyTime=").append(buyTime);
         sb.append(", addTime=").append(addTime);
         sb.append("]");
         return sb.toString();
@@ -107,10 +129,12 @@ public class Cart {
         Cart other = (Cart) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getGoodsId() == null ? other.getGoodsId() == null : this.getGoodsId().equals(other.getGoodsId()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
             && (this.getNum() == null ? other.getNum() == null : this.getNum().equals(other.getNum()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getBuyTime() == null ? other.getBuyTime() == null : this.getBuyTime().equals(other.getBuyTime()))
             && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()));
     }
 
@@ -120,10 +144,12 @@ public class Cart {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+        result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
         result = prime * result + ((getGoodsId() == null) ? 0 : getGoodsId().hashCode());
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
         result = prime * result + ((getNum() == null) ? 0 : getNum().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getBuyTime() == null) ? 0 : getBuyTime().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
         return result;
     }
@@ -131,10 +157,12 @@ public class Cart {
     public enum Column {
         id("id", "id", "INTEGER", false),
         uid("uid", "uid", "INTEGER", true),
+        orderId("order_id", "orderId", "INTEGER", false),
         goodsId("goods_id", "goodsId", "INTEGER", false),
         price("price", "price", "DECIMAL", false),
         num("num", "num", "INTEGER", false),
-        status("status", "status", "BIT", true),
+        status("status", "status", "TINYINT", true),
+        buyTime("buy_time", "buyTime", "TIMESTAMP", false),
         addTime("add_time", "addTime", "TIMESTAMP", false);
 
         private static final String BEGINNING_DELIMITER = "`";

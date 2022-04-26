@@ -329,6 +329,96 @@ public class CartExample {
             return (Criteria) this;
         }
 
+        public Criteria andOrderIdIsNull() {
+            addCriterion("order_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdIsNotNull() {
+            addCriterion("order_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdEqualTo(Integer value) {
+            addCriterion("order_id =", value, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("order_id = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdNotEqualTo(Integer value) {
+            addCriterion("order_id <>", value, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdNotEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("order_id <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdGreaterThan(Integer value) {
+            addCriterion("order_id >", value, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdGreaterThanColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("order_id > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("order_id >=", value, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdGreaterThanOrEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("order_id >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdLessThan(Integer value) {
+            addCriterion("order_id <", value, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdLessThanColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("order_id < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdLessThanOrEqualTo(Integer value) {
+            addCriterion("order_id <=", value, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdLessThanOrEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("order_id <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdIn(List<Integer> values) {
+            addCriterion("order_id in", values, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdNotIn(List<Integer> values) {
+            addCriterion("order_id not in", values, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdBetween(Integer value1, Integer value2) {
+            addCriterion("order_id between", value1, value2, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("order_id not between", value1, value2, "orderId");
+            return (Criteria) this;
+        }
+
         public Criteria andGoodsIdIsNull() {
             addCriterion("goods_id is null");
             return (Criteria) this;
@@ -609,7 +699,7 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Boolean value) {
+        public Criteria andStatusEqualTo(Byte value) {
             addCriterion("`status` =", value, "status");
             return (Criteria) this;
         }
@@ -619,7 +709,7 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Boolean value) {
+        public Criteria andStatusNotEqualTo(Byte value) {
             addCriterion("`status` <>", value, "status");
             return (Criteria) this;
         }
@@ -629,7 +719,7 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Boolean value) {
+        public Criteria andStatusGreaterThan(Byte value) {
             addCriterion("`status` >", value, "status");
             return (Criteria) this;
         }
@@ -639,7 +729,7 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
             addCriterion("`status` >=", value, "status");
             return (Criteria) this;
         }
@@ -649,7 +739,7 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Boolean value) {
+        public Criteria andStatusLessThan(Byte value) {
             addCriterion("`status` <", value, "status");
             return (Criteria) this;
         }
@@ -659,7 +749,7 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andStatusLessThanOrEqualTo(Byte value) {
             addCriterion("`status` <=", value, "status");
             return (Criteria) this;
         }
@@ -669,23 +759,113 @@ public class CartExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Boolean> values) {
+        public Criteria andStatusIn(List<Byte> values) {
             addCriterion("`status` in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Boolean> values) {
+        public Criteria andStatusNotIn(List<Byte> values) {
             addCriterion("`status` not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andStatusBetween(Byte value1, Byte value2) {
             addCriterion("`status` between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
             addCriterion("`status` not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeIsNull() {
+            addCriterion("buy_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeIsNotNull() {
+            addCriterion("buy_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeEqualTo(LocalDateTime value) {
+            addCriterion("buy_time =", value, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("buy_time = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeNotEqualTo(LocalDateTime value) {
+            addCriterion("buy_time <>", value, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeNotEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("buy_time <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeGreaterThan(LocalDateTime value) {
+            addCriterion("buy_time >", value, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeGreaterThanColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("buy_time > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeGreaterThanOrEqualTo(LocalDateTime value) {
+            addCriterion("buy_time >=", value, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeGreaterThanOrEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("buy_time >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeLessThan(LocalDateTime value) {
+            addCriterion("buy_time <", value, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeLessThanColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("buy_time < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeLessThanOrEqualTo(LocalDateTime value) {
+            addCriterion("buy_time <=", value, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeLessThanOrEqualToColumn(Cart.Column column) {
+            addCriterion(new StringBuilder("buy_time <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeIn(List<LocalDateTime> values) {
+            addCriterion("buy_time in", values, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeNotIn(List<LocalDateTime> values) {
+            addCriterion("buy_time not in", values, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("buy_time between", value1, value2, "buyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("buy_time not between", value1, value2, "buyTime");
             return (Criteria) this;
         }
 

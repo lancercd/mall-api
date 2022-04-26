@@ -1,18 +1,10 @@
 package com.mall.api.controller;
 
-import com.mall.api.annotation.Login;
-import com.mall.api.annotation.LoginUser;
-import com.mall.api.dto.request.UserLoginAndRegister;
 import com.mall.api.service.GoodsService;
 import com.mall.core.utils.ResponseUtil;
 import com.mall.db.domain.Goods;
-import com.mall.db.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.groups.Default;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,11 +47,5 @@ public class GoodsController {
         }
 
         return ResponseUtil.ok(goods);
-    }
-
-    @Login
-    @GetMapping("/add/cart/{id}/{num}")
-    public Object addToCart(@LoginUser Integer uid, @PathVariable() Integer id, @PathVariable() Integer num) {
-        return goodsService.addToCart(uid, id, num);
     }
 }

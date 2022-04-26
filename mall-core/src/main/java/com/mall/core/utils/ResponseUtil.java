@@ -77,6 +77,10 @@ public class ResponseUtil {
         return obj;
     }
 
+    public static Object okMsg(String msg) {
+        return buildSuccess(msg);
+    }
+
     public static <T> Object pagination(List<T> lists) {
         Map<String, Object> data = new HashMap<>();
         data.put("count", PageInfo.of(lists).getTotal());

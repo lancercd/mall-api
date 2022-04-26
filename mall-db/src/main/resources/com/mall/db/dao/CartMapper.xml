@@ -4,10 +4,12 @@
   <resultMap id="BaseResultMap" type="com.mall.db.domain.Cart">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="num" jdbcType="INTEGER" property="num" />
-    <result column="status" jdbcType="BIT" property="status" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="buy_time" jdbcType="TIMESTAMP" property="buyTime" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `uid`, goods_id, price, num, `status`, add_time
+    id, `uid`, order_id, goods_id, price, num, `status`, buy_time, add_time
   </sql>
   <select id="selectByExample" parameterType="com.mall.db.domain.CartExample" resultMap="BaseResultMap">
     select
@@ -143,10 +145,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cart (`uid`, goods_id, price, 
-      num, `status`, add_time)
-    values (#{uid,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
-      #{num,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP})
+    insert into cart (`uid`, order_id, goods_id, 
+      price, num, `status`, 
+      buy_time, add_time)
+    values (#{uid,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{buyTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mall.db.domain.Cart">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -156,6 +160,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uid != null">
         `uid`,
+      </if>
+      <if test="orderId != null">
+        order_id,
       </if>
       <if test="goodsId != null">
         goods_id,
@@ -169,6 +176,9 @@
       <if test="status != null">
         `status`,
       </if>
+      <if test="buyTime != null">
+        buy_time,
+      </if>
       <if test="addTime != null">
         add_time,
       </if>
@@ -176,6 +186,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
       </if>
       <if test="goodsId != null">
         #{goodsId,jdbcType=INTEGER},
@@ -187,7 +200,10 @@
         #{num,jdbcType=INTEGER},
       </if>
       <if test="status != null">
-        #{status,jdbcType=BIT},
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="buyTime != null">
+        #{buyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -209,6 +225,9 @@
       <if test="record.uid != null">
         `uid` = #{record.uid,jdbcType=INTEGER},
       </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
       <if test="record.goodsId != null">
         goods_id = #{record.goodsId,jdbcType=INTEGER},
       </if>
@@ -219,7 +238,10 @@
         num = #{record.num,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
-        `status` = #{record.status,jdbcType=BIT},
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.buyTime != null">
+        buy_time = #{record.buyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
@@ -233,10 +255,12 @@
     update cart
     set id = #{record.id,jdbcType=INTEGER},
       `uid` = #{record.uid,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
       goods_id = #{record.goodsId,jdbcType=INTEGER},
       price = #{record.price,jdbcType=DECIMAL},
       num = #{record.num,jdbcType=INTEGER},
-      `status` = #{record.status,jdbcType=BIT},
+      `status` = #{record.status,jdbcType=TINYINT},
+      buy_time = #{record.buyTime,jdbcType=TIMESTAMP},
       add_time = #{record.addTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,6 +272,9 @@
       <if test="uid != null">
         `uid` = #{uid,jdbcType=INTEGER},
       </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
       <if test="goodsId != null">
         goods_id = #{goodsId,jdbcType=INTEGER},
       </if>
@@ -258,7 +285,10 @@
         num = #{num,jdbcType=INTEGER},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=BIT},
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="buyTime != null">
+        buy_time = #{buyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -269,10 +299,12 @@
   <update id="updateByPrimaryKey" parameterType="com.mall.db.domain.Cart">
     update cart
     set `uid` = #{uid,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
       goods_id = #{goodsId,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
       num = #{num,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=BIT},
+      `status` = #{status,jdbcType=TINYINT},
+      buy_time = #{buyTime,jdbcType=TIMESTAMP},
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
