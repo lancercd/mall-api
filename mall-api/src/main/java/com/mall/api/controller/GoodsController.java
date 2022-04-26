@@ -1,5 +1,7 @@
 package com.mall.api.controller;
 
+import com.mall.api.annotation.Login;
+import com.mall.api.annotation.LoginUser;
 import com.mall.api.dto.request.UserLoginAndRegister;
 import com.mall.api.service.GoodsService;
 import com.mall.core.utils.ResponseUtil;
@@ -40,8 +42,6 @@ public class GoodsController {
         return ResponseUtil.ok();
     }
 
-
-
     @GetMapping("/detail/{id}")
     public Object detail(@PathVariable() Integer id) {
         if (null == id) {
@@ -55,5 +55,11 @@ public class GoodsController {
         }
 
         return ResponseUtil.ok(goods);
+    }
+
+    @Login
+    @GetMapping("/add/cart/{id}/{num}")
+    public Object addToCart(@LoginUser Integer uid, @PathVariable() Integer id, @PathVariable() Integer num) {
+        return goodsService.addToCart(uid, id, num);
     }
 }

@@ -14,7 +14,7 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
     /**
      * header中token 键名
      */
-    public static final String LOGIN_TOKEN_KEY = "auth";
+    public static final String LOGIN_TOKEN_KEY = "token";
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
