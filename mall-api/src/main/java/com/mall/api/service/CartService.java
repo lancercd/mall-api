@@ -102,4 +102,12 @@ public class CartService {
         }
         return ResponseUtil.okMsg("修改成功!");
     }
+
+    public Object del(Integer uid, List<Integer> ids) {
+        if (cartBaseService.delByIdsAndUid(uid, ids)) {
+            return ResponseUtil.okMsg("删除成功!");
+        } else {
+            return ResponseUtil.fail("删除失败!");
+        }
+    }
 }

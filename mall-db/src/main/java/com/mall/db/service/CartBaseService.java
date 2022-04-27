@@ -29,6 +29,26 @@ public class CartBaseService extends BaseService {
         return cartMapper.selectByExampleSelective(example);
     }
 
+    public boolean del(Integer id) {
+        return cartMapper.deleteByPrimaryKey(id) != 0;
+    }
+
+    public boolean delByIds(List<Integer> ids) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        return cartMapper.deleteByExample(example) != 0;
+    }
+
+    public boolean delByIdsAndUid(Integer uid, List<Integer> ids) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        criteria.andUidEqualTo(uid);
+        return cartMapper.deleteByExample(example) != 0;
+    }
+
+
     public Cart findByUidAndGoodsId(Integer uid, Integer goodsId) {
         CartExample example = new CartExample();
         CartExample.Criteria criteria = example.createCriteria();
