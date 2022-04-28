@@ -51,6 +51,10 @@ public class UserService {
         return loginSuccess(user);
     }
 
+    public User findById(Integer uid) {
+        return userBaseService.findById(uid);
+    }
+
     private Object loginSuccess(User user) {
         user.setPwd(null);
         user.setStatus(null);

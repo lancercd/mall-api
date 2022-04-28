@@ -4,8 +4,10 @@ import com.mall.api.annotation.Login;
 import com.mall.api.annotation.LoginUser;
 import com.mall.api.dto.request.GoodsDto;
 import com.mall.api.service.GoodsService;
+import com.mall.api.service.UserService;
 import com.mall.core.utils.ResponseUtil;
 import com.mall.db.domain.Goods;
+import com.mall.db.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/list")
     public Object goodsList(
@@ -51,7 +56,9 @@ public class GoodsController {
             @LoginUser Integer uid,
             @RequestBody @Validated GoodsDto goodsDto
     ) {
+        User user = userService.findById(uid);
         Goods goods = GoodsDto.convert(goodsDto);
+        goods.setSchoolId(user.getSchoolId());
         goods.setUid(uid);
         if (!goodsService.add(goods)) {
             return ResponseUtil.fail("添加失败!");
