@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,25 @@ public class CartService {
     private GoodsBaseService goodsBaseService;
 
     @Autowired
+    private GoodsService goodsService;
+
+    @Autowired
     private CartBaseService cartBaseService;
+
+    public List<CartDto> findByIds(Integer uid, List<Integer> ids) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        criteria.andUidEqualTo(uid);
+
+        List<Cart> carts = cartBaseService.queryByExample(example);
+        List<CartDto> list = new ArrayList<>(carts.size());
+        for (Cart cart : carts) {
+            Goods goods = goodsBaseService.findById(cart.getGoodsId());
+            list.add(CartDto.convert(cart, goods));
+        }
+        return list;
+    }
 
     public List<CartDto> list(Integer uid) {
         CartExample example = new CartExample();
@@ -46,31 +65,18 @@ public class CartService {
     public Object add(Integer uid, Integer id, Integer num) {
         Goods goods = goodsBaseService.findById(id);
 
-        if (null == goods) {
-            return ResponseUtil.fail("商品不存在!");
+        String checkInfo = goodsService.isAvailable(goods, num);
+        if (checkInfo != null) {
+            return ResponseUtil.fail(checkInfo);
         }
 
-        if (0 == goods.getStatus()) {
-            return ResponseUtil.fail("商品下架无法添加!");
+        if (goods.getUid().equals(uid)) {
+            return ResponseUtil.fail("无法添加自己发布的商品到购物车!");
         }
 
-        if (1 != goods.getIsOnSale()) {
-            return ResponseUtil.fail("商品审核未通过!");
-        }
+        Cart cart = cartBaseService.findByStatus(uid, goods.getId(), 0);
 
-        Integer quantity = goods.getQuantity();
-
-        if (quantity <= 0) {
-            return ResponseUtil.fail("商品已售空!");
-        }
-
-        if (quantity < num) {
-            return ResponseUtil.fail("商品数量只剩" + quantity + "个, 请修改数量");
-        }
-
-        Cart cart = cartBaseService.findByUidAndGoodsId(uid, goods.getId());
-
-        if (null != cart && cart.getStatus() == 0) {
+        if (null != cart) {
             // 修改g购物车的数量
             if (cart.getNum().equals(num)) {
                 return ResponseUtil.fail("已经添加过购物车了!");
@@ -82,12 +88,37 @@ public class CartService {
         }
     }
 
+    public int createWithBuy(Goods goods, Integer orderId, Integer uid, Integer num) {
+        Cart cart = new Cart();
+        cart.setUid(uid);
+        cart.setOrderId(orderId);
+        cart.setGoodsId(goods.getId());
+        cart.setNum(num);
+        cart.setPrice(calculatePrice(goods, num));
+        cart.setStatus((byte)1);
+        cart.setBuyTime(LocalDateTime.now());
+        return cartBaseService.insertSelective(cart);
+    }
+
+    public int createFromCart(Integer uid, Integer orderId, List<Integer> cartIds) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria
+            .andIdIn(cartIds)
+            .andUidEqualTo(uid);
+
+        Cart cart = new Cart();
+        cart.setOrderId(orderId);
+        cart.setStatus((byte) 1);
+        return cartBaseService.updateByExample(cart, example);
+    }
+
     private Object createCart(Goods goods, Integer uid, Integer num) {
         Cart cart = new Cart();
         cart.setUid(uid);
         cart.setGoodsId(goods.getId());
         cart.setNum(num);
-        cart.setPrice(goods.getPrice().multiply(BigDecimal.valueOf(num)));
+        cart.setPrice(calculatePrice(goods, num));
         if (!cartBaseService.add(cart)) {
             return ResponseUtil.fail("添加失败!");
         }
@@ -110,4 +141,22 @@ public class CartService {
             return ResponseUtil.fail("删除失败!");
         }
     }
+
+    public BigDecimal calculatePrice(Goods goods, Integer num) {
+        if (num == null) {
+            num = 1;
+        }
+        return goods.getPrice().multiply(BigDecimal.valueOf(num));
+    }
+
+    public List<CartDto> findByOrderId(Integer orderId){
+        List<Cart> carts = cartBaseService.findByOrderId(orderId);
+        List<CartDto> list = new ArrayList<>(carts.size());
+        for (Cart cart : carts) {
+            Goods goods = goodsBaseService.findById(cart.getGoodsId());
+            list.add(CartDto.convert(cart, goods));
+        }
+        return list;
+    }
+
 }

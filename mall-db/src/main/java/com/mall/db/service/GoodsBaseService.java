@@ -89,8 +89,12 @@ public class GoodsBaseService extends BaseService {
         return goodsMapper.updateByPrimaryKeySelective(goods) == 1;
     }
 
-    public List<Goods> queryByExample(Integer currentPageNum, Integer pageSize, GoodsExample example) {
+    public List<Goods> queryByExampleAndPage(Integer currentPageNum, Integer pageSize, GoodsExample example) {
         PageHelper.startPage(currentPageNum, pageSize);
+        return goodsMapper.selectByExampleSelective(example);
+    }
+
+    public List<Goods> queryByExample(GoodsExample example) {
         return goodsMapper.selectByExampleSelective(example);
     }
 

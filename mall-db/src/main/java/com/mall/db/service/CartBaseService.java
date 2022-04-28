@@ -58,9 +58,34 @@ public class CartBaseService extends BaseService {
         return cartMapper.selectOneByExampleSelective(example);
     }
 
+    public List<Cart> findByOrderId(Integer orderId) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria.andOrderIdEqualTo(orderId);
+        return cartMapper.selectByExample(example);
+    }
+
+    public Cart findByStatus(Integer uid, Integer goodsId, int status) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria.andUidEqualTo(uid);
+        criteria.andGoodsIdEqualTo(goodsId);
+        criteria.andStatusEqualTo((byte) status);
+        return cartMapper.selectOneByExampleSelective(example);
+    }
+
     public boolean add(Cart cart) {
         cart.setAddTime(LocalDateTime.now());
         return cartMapper.insertSelective(cart) == 1;
+    }
+
+    public int insertSelective(Cart cart) {
+        cart.setAddTime(LocalDateTime.now());
+        return cartMapper.insertSelective(cart);
+    }
+
+    public int insert(Cart cart) {
+        return cartMapper.insert(cart);
     }
 
     public boolean updateSelective(Cart cart) {
@@ -81,5 +106,9 @@ public class CartBaseService extends BaseService {
 
     public List<Cart> queryByExample(CartExample example) {
         return cartMapper.selectByExampleSelective(example);
+    }
+
+    public int updateByExample(Cart cart, CartExample example) {
+        return cartMapper.updateByExampleSelective(cart, example);
     }
 }

@@ -1,10 +1,16 @@
 package com.mall.api.controller;
 
+import com.mall.api.annotation.Login;
+import com.mall.api.annotation.LoginUser;
+import com.mall.api.dto.request.GoodsDto;
 import com.mall.api.service.GoodsService;
 import com.mall.core.utils.ResponseUtil;
 import com.mall.db.domain.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,11 +32,23 @@ public class GoodsController {
         return ResponseUtil.ok(list);
     }
 
+    @Login
+    @GetMapping("/publish/list")
+    public Object publishGoodsList(@LoginUser Integer uid) {
+        return ResponseUtil.ok(goodsService.publishList(uid));
+    }
+
+    @Login
     @PostMapping("/add")
     public Object add(
-            @RequestBody Goods goods
+            @LoginUser Integer uid,
+            @RequestBody @Validated GoodsDto goodsDto
     ) {
-        goodsService.add(goods);
+        Goods goods = GoodsDto.convert(goodsDto);
+        goods.setUid(uid);
+        if (!goodsService.add(goods)) {
+            return ResponseUtil.fail("添加失败!");
+        }
         return ResponseUtil.ok();
     }
 

@@ -1,14 +1,12 @@
 package com.mall.db.service;
 
 import com.github.pagehelper.PageHelper;
-import com.mall.db.dao.CategoryMapper;
 import com.mall.db.dao.OrderMapper;
 import com.mall.db.domain.*;
-import com.mall.db.exception.ServiceBadArgumentException;
-import com.mall.db.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,5 +22,10 @@ public class OrderBaseService extends BaseService {
     public List<Order> queryByExample(Integer currentPageNum, Integer pageSize, OrderExample example) {
         PageHelper.startPage(currentPageNum, pageSize);
         return orderMapper.selectByExampleSelective(example);
+    }
+
+    public int addSelective(Order order) {
+        order.setAddTime(LocalDateTime.now());
+        return orderMapper.insertSelective(order);
     }
 }
