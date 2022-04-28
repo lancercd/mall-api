@@ -53,7 +53,9 @@ public class GoodsService {
             criteria.andNameLike("%" + key + "%");
         }
 
-        criteria.andStatusEqualTo((byte) 1).andIsOnSaleEqualTo((byte) 1);
+        criteria.andStatusEqualTo((byte) 1)
+                .andIsOnSaleEqualTo((byte) 1)
+                .andQuantityNotEqualTo(0);
 
         List<Goods> goods = goodsBaseService.queryByExampleAndPage(currentPageNum, pageSize, example);
         long total = PageInfo.of(goods).getTotal();
