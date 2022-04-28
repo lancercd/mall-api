@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class OrderService {
@@ -121,6 +119,101 @@ public class OrderService {
         order.setTotalPrice(totalPrice);
         orderBaseService.addSelective(order);
         return order;
+    }
+
+    public Object cancel(Integer uid, Integer oid, Integer cid) {
+        Order order = orderBaseService.findById(oid);
+        List<Cart> carts = cartService.findByOrderId(uid, oid);
+
+        if (carts == null) {
+            return ResponseUtil.fail("不存在!");
+        }
+
+        boolean isSuccess = false;
+        boolean isAllCancel = true;
+        Cart needCancelCart = null;
+
+        int len = carts.size();
+        if (len == 1) {
+            Cart cart = carts.get(0);
+            if (!cart.getId().equals(cid)) {
+                return ResponseUtil.fail("不存在!");
+            }
+            needCancelCart = cart;
+        } else {
+            for (Cart cart : carts) {
+                if (cart.getId().equals(cid)) {
+                    needCancelCart = cart;
+                } else if (cart.getStatus() != -1) {
+                    isAllCancel = false;
+                }
+            }
+        }
+
+        if (needCancelCart != null) {
+            needCancelCart.setStatus((byte) -1);
+            isSuccess = cartBaseService.update(needCancelCart);
+        } else {
+            return ResponseUtil.fail("不存在!");
+        }
+
+
+        if (isAllCancel) {
+            order.setStatus((short) -1);
+            orderBaseService.updateByIdSelective(order);
+        }
+
+        if (!isSuccess) {
+            return ResponseUtil.fail("失败!");
+        }
+        return ResponseUtil.ok();
+    }
+
+    public Object complete(Integer uid, Integer oid, Integer cid) {
+        Order order = orderBaseService.findById(oid);
+        List<Cart> carts = cartService.findByOrderId(uid, oid);
+
+        if (carts == null) {
+            return ResponseUtil.fail("不存在!");
+        }
+
+        boolean isSuccess = false;
+        boolean isAllComplete = true;
+        Cart needCompleteCart = null;
+
+        int len = carts.size();
+        if (len == 1) {
+            Cart cart = carts.get(0);
+            if (!cart.getId().equals(cid)) {
+                return ResponseUtil.fail("不存在!");
+            }
+            needCompleteCart = cart;
+        } else {
+            for (Cart cart : carts) {
+                if (cart.getId().equals(cid)) {
+                    needCompleteCart = cart;
+                } else if (cart.getStatus() == 1) {
+                    isAllComplete = false;
+                }
+            }
+        }
+
+        if (needCompleteCart != null) {
+            needCompleteCart.setStatus((byte) 2);
+            isSuccess = cartBaseService.update(needCompleteCart);
+        } else {
+            return ResponseUtil.fail("不存在!");
+        }
+
+        if (isAllComplete) {
+            order.setStatus((short) 1);
+            orderBaseService.updateByIdSelective(order);
+        }
+
+        if (!isSuccess) {
+            return ResponseUtil.fail("失败!");
+        }
+        return ResponseUtil.ok();
     }
 
 }

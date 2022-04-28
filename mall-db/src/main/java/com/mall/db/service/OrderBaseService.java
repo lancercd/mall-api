@@ -28,4 +28,8 @@ public class OrderBaseService extends BaseService {
         order.setAddTime(LocalDateTime.now());
         return orderMapper.insertSelective(order);
     }
+
+    public boolean updateByIdSelective(Order order) {
+        return orderMapper.updateByPrimaryKeySelective(order) != 0;
+    }
 }

@@ -43,6 +43,14 @@ public class CartService {
         return list;
     }
 
+    public List<Cart> findByOrderId(Integer uid, Integer oid) {
+        CartExample example = new CartExample();
+        CartExample.Criteria criteria = example.createCriteria();
+        criteria.andOrderIdEqualTo(oid);
+        criteria.andUidEqualTo(uid);
+        return cartBaseService.queryByExample(example);
+    }
+
     public List<CartDto> list(Integer uid) {
         CartExample example = new CartExample();
         CartExample.Criteria criteria = example.createCriteria();

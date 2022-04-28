@@ -9,8 +9,6 @@ import com.mall.db.domain.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,12 +21,21 @@ public class GoodsController {
     @GetMapping("/list")
     public Object goodsList(
             @RequestParam(defaultValue = "1") Integer currentPageNum,
-            @RequestParam(defaultValue = "10")Integer pageSize,
+            @RequestParam(defaultValue = "100")Integer pageSize,
             @RequestParam(defaultValue = "")String key,
+            @RequestParam(defaultValue = "")Integer categoryId,
+            @RequestParam(defaultValue = "")Integer schoolId,
             @RequestParam(defaultValue = "")String filed,
             @RequestParam(defaultValue = "")String order
     ) {
-        Map<String, Object> list = goodsService.list(currentPageNum, pageSize, key, filed, order);
+        Map<String, Object> list = goodsService.list(
+                currentPageNum,
+                pageSize,
+                key,
+                categoryId,
+                schoolId,
+                filed,
+                order);
         return ResponseUtil.ok(list);
     }
 
@@ -57,12 +64,12 @@ public class GoodsController {
         if (null == id) {
             return ResponseUtil.fail("商品不存在");
         }
-
         Goods goods = goodsService.detail(id);
 
         if (null == goods) {
             return ResponseUtil.fail("商品不存在");
         }
+        goodsService.view(goods);
 
         return ResponseUtil.ok(goods);
     }

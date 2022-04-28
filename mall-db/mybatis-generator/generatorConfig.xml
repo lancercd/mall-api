@@ -93,10 +93,6 @@
         </table>
         -->
 
-<!--        <table tableName="user">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-
 <!--        <table tableName="admin">-->
 <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--            <columnOverride column="role_ids" javaType="java.lang.Integer[]"-->
@@ -119,15 +115,11 @@
 <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--            <columnOverride column="images" javaType="java.lang.String[]"-->
 <!--                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
-<!--            <columnOverride column="props" javaType="java.util.Map[]"-->
-<!--                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>-->
+<!--&lt;!&ndash;            <columnOverride column="props" javaType="java.util.Map[]"&ndash;&gt;-->
+<!--&lt;!&ndash;                            typeHandler="com.mall.db.mybatis.JsonStringArrayTypeHandler"/>&ndash;&gt;-->
 <!--        </table>-->
 
 <!--        <table tableName="order">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="order_detail">-->
 <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--        </table>-->
 
@@ -147,9 +139,9 @@
 <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--        </table>-->
 
-<!--        <table tableName="user">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
+        <table tableName="user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

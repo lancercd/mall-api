@@ -22,7 +22,14 @@ public class GoodsService {
     @Autowired
     private GoodsBaseService goodsBaseService;
 
-    public Map<String, Object> list(Integer currentPageNum, Integer pageSize, String key, String filed, String order) {
+    public Map<String, Object> list(
+            Integer currentPageNum,
+            Integer pageSize,
+            String key,
+            Integer categoryId,
+            Integer schoolId,
+            String filed, String order
+    ) {
         GoodsExample example = new GoodsExample();
         GoodsExample.Criteria criteria = example.createCriteria();
 
@@ -34,9 +41,19 @@ public class GoodsService {
             example.orderBy(orderBy);
         }
 
+        if (categoryId != null && categoryId != 0) {
+            criteria.andCategoryIdEqualTo(categoryId);
+        }
+
+        if (schoolId != null && schoolId != 0) {
+            criteria.andSchoolIdEqualTo(schoolId);
+        }
+
         if (!StringUtil.isEmpty(key)) {
             criteria.andNameLike("%" + key + "%");
         }
+
+        criteria.andStatusEqualTo((byte) 1).andIsOnSaleEqualTo((byte) 1);
 
         List<Goods> goods = goodsBaseService.queryByExampleAndPage(currentPageNum, pageSize, example);
         long total = PageInfo.of(goods).getTotal();
@@ -101,5 +118,10 @@ public class GoodsService {
             return "商品数量只剩" + quantity + "个, 请修改数量";
         }
         return null;
+    }
+
+    public void view(Goods goods) {
+        goods.setView(goods.getView() + 1);
+        goodsBaseService.updateSelective(goods);
     }
 }

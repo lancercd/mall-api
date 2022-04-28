@@ -14,6 +14,8 @@ public class Goods {
 
     private Integer categoryId;
 
+    private Integer schoolId;
+
     private String name;
 
     private BigDecimal price;
@@ -72,6 +74,14 @@ public class Goods {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 
     public String getName() {
@@ -196,6 +206,7 @@ public class Goods {
         sb.append(", uid=").append(uid);
         sb.append(", type=").append(type);
         sb.append(", categoryId=").append(categoryId);
+        sb.append(", schoolId=").append(schoolId);
         sb.append(", name=").append(name);
         sb.append(", price=").append(price);
         sb.append(", normalPrice=").append(normalPrice);
@@ -230,6 +241,7 @@ public class Goods {
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
+            && (this.getSchoolId() == null ? other.getSchoolId() == null : this.getSchoolId().equals(other.getSchoolId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
             && (this.getNormalPrice() == null ? other.getNormalPrice() == null : this.getNormalPrice().equals(other.getNormalPrice()))
@@ -254,6 +266,7 @@ public class Goods {
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
+        result = prime * result + ((getSchoolId() == null) ? 0 : getSchoolId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
         result = prime * result + ((getNormalPrice() == null) ? 0 : getNormalPrice().hashCode());
@@ -276,6 +289,7 @@ public class Goods {
         uid("uid", "uid", "INTEGER", true),
         type("type", "type", "TINYINT", true),
         categoryId("category_id", "categoryId", "INTEGER", false),
+        schoolId("school_id", "schoolId", "INTEGER", false),
         name("name", "name", "VARCHAR", true),
         price("price", "price", "DECIMAL", false),
         normalPrice("normal_price", "normalPrice", "DECIMAL", false),

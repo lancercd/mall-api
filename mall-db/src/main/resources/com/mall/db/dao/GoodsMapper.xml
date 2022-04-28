@@ -6,6 +6,7 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="type" jdbcType="TINYINT" property="type" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="normal_price" jdbcType="DECIMAL" property="normalPrice" />
@@ -120,8 +121,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `uid`, `type`, category_id, `name`, price, normal_price, discount, degree_id, 
-    banner, images, props, quantity, `status`, is_on_sale, `view`, add_time
+    id, `uid`, `type`, category_id, school_id, `name`, price, normal_price, discount, 
+    degree_id, banner, images, props, quantity, `status`, is_on_sale, `view`, add_time
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -221,16 +222,16 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into goods (`uid`, `type`, category_id, 
-      `name`, price, normal_price, 
-      discount, degree_id, banner, 
-      images, 
+      school_id, `name`, price, 
+      normal_price, discount, degree_id, 
+      banner, images, 
       props, quantity, `status`, 
       is_on_sale, `view`, add_time, 
       description)
     values (#{uid,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{categoryId,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{normalPrice,jdbcType=DECIMAL}, 
-      #{discount,jdbcType=TINYINT}, #{degreeId,jdbcType=TINYINT}, #{banner,jdbcType=VARCHAR}, 
-      #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler}, 
+      #{schoolId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{normalPrice,jdbcType=DECIMAL}, #{discount,jdbcType=TINYINT}, #{degreeId,jdbcType=TINYINT}, 
+      #{banner,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR,typeHandler=com.mall.db.mybatis.JsonStringArrayTypeHandler}, 
       #{props,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
       #{isOnSale,jdbcType=TINYINT}, #{view,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
       #{description,jdbcType=LONGVARCHAR})
@@ -249,6 +250,9 @@
       </if>
       <if test="categoryId != null">
         category_id,
+      </if>
+      <if test="schoolId != null">
+        school_id,
       </if>
       <if test="name != null">
         `name`,
@@ -302,6 +306,9 @@
       </if>
       <if test="categoryId != null">
         #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -368,6 +375,9 @@
       <if test="record.categoryId != null">
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
+      </if>
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -421,6 +431,7 @@
       `uid` = #{record.uid,jdbcType=INTEGER},
       `type` = #{record.type,jdbcType=TINYINT},
       category_id = #{record.categoryId,jdbcType=INTEGER},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       normal_price = #{record.normalPrice,jdbcType=DECIMAL},
@@ -445,6 +456,7 @@
       `uid` = #{record.uid,jdbcType=INTEGER},
       `type` = #{record.type,jdbcType=TINYINT},
       category_id = #{record.categoryId,jdbcType=INTEGER},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       normal_price = #{record.normalPrice,jdbcType=DECIMAL},
@@ -473,6 +485,9 @@
       </if>
       <if test="categoryId != null">
         category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
@@ -524,6 +539,7 @@
     set `uid` = #{uid,jdbcType=INTEGER},
       `type` = #{type,jdbcType=TINYINT},
       category_id = #{categoryId,jdbcType=INTEGER},
+      school_id = #{schoolId,jdbcType=INTEGER},
       `name` = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       normal_price = #{normalPrice,jdbcType=DECIMAL},
@@ -545,6 +561,7 @@
     set `uid` = #{uid,jdbcType=INTEGER},
       `type` = #{type,jdbcType=TINYINT},
       category_id = #{categoryId,jdbcType=INTEGER},
+      school_id = #{schoolId,jdbcType=INTEGER},
       `name` = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       normal_price = #{normalPrice,jdbcType=DECIMAL},

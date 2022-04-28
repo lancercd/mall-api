@@ -22,7 +22,7 @@ public class OrderController {
     @Login
     @GetMapping("/list")
     public Object orderList(@LoginUser Integer uid) {
-        return ResponseUtil.ok(orderService.getRecentOrder(uid));
+        return ResponseUtil.ok(orderService.list(uid));
     }
 
     @Login
@@ -51,6 +51,26 @@ public class OrderController {
             return ResponseUtil.fail("请选择商品!");
         }
         return orderService.buyNowFromCart(uid, ids);
+    }
+
+    @Login
+    @GetMapping("/cart/cancel/{oid}/{cid}")
+    public Object cancel(
+            @LoginUser Integer uid,
+            @PathVariable() Integer oid,
+            @PathVariable() Integer cid
+    ) {
+        return orderService.cancel(uid, oid, cid);
+    }
+
+    @Login
+    @GetMapping("/cart/complete/{oid}/{cid}")
+    public Object complete(
+            @LoginUser Integer uid,
+            @PathVariable() Integer oid,
+            @PathVariable() Integer cid
+    ) {
+        return orderService.complete(uid, oid, cid);
     }
 
 }
