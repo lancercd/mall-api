@@ -24,7 +24,7 @@ public class AdminGoodsController {
     @GetMapping("/list")
     public Object goodsList(
             @RequestParam(defaultValue = "1") Integer currentPageNum,
-            @RequestParam(defaultValue = "10")Integer pageSize,
+            @RequestParam(defaultValue = "100")Integer pageSize,
             @RequestParam(defaultValue = "name")String type,
             @RequestParam(defaultValue = "")String key
     ) {
@@ -76,6 +76,18 @@ public class AdminGoodsController {
         }
 
         return ResponseUtil.ok();
+    }
+
+    @GetMapping("/pass/{id}")
+    public Object pass(@PathVariable() Integer id) {
+        adminGoodsService.pass(id);
+        return ResponseUtil.ok("成功");
+    }
+
+    @GetMapping("/del/{id}")
+    public Object del(@PathVariable() Integer id) {
+        adminGoodsService.del(id);
+        return ResponseUtil.ok("成功");
     }
 
 }

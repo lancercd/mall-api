@@ -23,7 +23,7 @@ public class SchoolBaseService extends BaseService {
 
     public boolean add(School school) {
         school.setAddTime(LocalDateTime.now());
-        return schoolMapper.insert(school) == 1;
+        return schoolMapper.insert(school) != 0;
     }
 
     public School findByName(String name) {
@@ -35,7 +35,7 @@ public class SchoolBaseService extends BaseService {
     }
 
     public boolean del(Integer id) {
-        return schoolMapper.deleteByPrimaryKey(id) == 1;
+        return schoolMapper.deleteByPrimaryKey(id) != 0;
     }
 
     public List<School> querySelective(String keywords, Integer page, Integer size, String order) {

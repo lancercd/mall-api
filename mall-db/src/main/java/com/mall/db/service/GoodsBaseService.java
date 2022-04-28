@@ -6,6 +6,7 @@ import com.mall.db.dao.GoodsMapper;
 import com.mall.db.domain.Goods;
 import com.mall.db.domain.Goods.Column;
 import com.mall.db.domain.GoodsExample;
+import com.mall.db.domain.UserExample;
 import com.mall.db.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
@@ -98,4 +99,21 @@ public class GoodsBaseService extends BaseService {
         return goodsMapper.selectByExampleSelective(example);
     }
 
+    public long count() {
+        GoodsExample example = new GoodsExample();
+        return goodsMapper.countByExample(example);
+    }
+
+    public long countActive() {
+        GoodsExample example = new GoodsExample();
+        GoodsExample.Criteria criteria = example.createCriteria();
+
+        criteria.andAddTimeGreaterThan(LocalDateTime.now().minusDays(1));
+
+        return goodsMapper.countByExample(example);
+    }
+
+    public boolean delById (Integer id) {
+        return goodsMapper.deleteByPrimaryKey(id) != 0;
+    }
 }

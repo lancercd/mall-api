@@ -98,4 +98,22 @@ public class AdminGoodsService {
 
         return true;
     }
+
+    public Map<String, Long> countInfo() {
+        HashMap<String, Long> map = new HashMap<>();
+        map.put("all", goodsBaseService.count());
+        map.put("active", goodsBaseService.countActive());
+
+        return map;
+    }
+
+    public boolean pass(Integer id) {
+        Goods goods = goodsBaseService.findById(id);
+        goods.setIsOnSale((byte) 1);
+        return goodsBaseService.updateSelective(goods);
+    }
+
+    public boolean del(Integer id) {
+        return goodsBaseService.delById(id);
+    }
 }

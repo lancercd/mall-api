@@ -26,7 +26,7 @@ public class UserBaseService extends BaseService {
         return userMapper.selectByPrimaryKey(id);
     }
 
-    public List<User> querySelective(Integer currentPageNum, Integer pageSize, String type, String key) {
+    public List<User> querySelective(Integer currentPageNum, Integer pageSize, Integer status, String type, String key) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
 
@@ -34,6 +34,10 @@ public class UserBaseService extends BaseService {
             if (User.Column.username.value().equals(type)) {
                 criteria.andUsernameLike('%' + key + '%');
             }
+        }
+
+        if (status != null) {
+            criteria.andStatusEqualTo(status.byteValue());
         }
 
         example.orderBy(User.Column.addTime.desc());
@@ -54,5 +58,23 @@ public class UserBaseService extends BaseService {
         user.setAddTime(LocalDateTime.now());
         user.setStatus((byte)0);
         return userMapper.insert(user) == 1;
+    }
+
+    public boolean updateByPrimaryKeySelective(User user) {
+        return userMapper.updateByPrimaryKeySelective(user) != 0;
+    }
+
+    public long count() {
+        UserExample example = new UserExample();
+        return userMapper.countByExample(example);
+    }
+
+    public long countActive() {
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+
+        criteria.andAddTimeGreaterThan(LocalDateTime.now().minusDays(1));
+
+        return userMapper.countByExample(example);
     }
 }

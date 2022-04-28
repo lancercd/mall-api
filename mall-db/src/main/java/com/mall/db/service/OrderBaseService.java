@@ -3,6 +3,7 @@ package com.mall.db.service;
 import com.github.pagehelper.PageHelper;
 import com.mall.db.dao.OrderMapper;
 import com.mall.db.domain.*;
+import com.mall.db.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,5 +32,38 @@ public class OrderBaseService extends BaseService {
 
     public boolean updateByIdSelective(Order order) {
         return orderMapper.updateByPrimaryKeySelective(order) != 0;
+    }
+
+    public long count() {
+        OrderExample example = new OrderExample();
+        return orderMapper.countByExample(example);
+    }
+
+    public long countActive() {
+        OrderExample example = new OrderExample();
+        OrderExample.Criteria criteria = example.createCriteria();
+
+        criteria.andAddTimeGreaterThan(LocalDateTime.now().minusDays(1));
+
+        return orderMapper.countByExample(example);
+    }
+
+    public List<Order> querySelective(Integer currentPageNum, Integer pageSize, String type, String key) {
+        OrderExample example = new OrderExample();
+        OrderExample.Criteria criteria = example.createCriteria();
+
+        // if (!StringUtil.isEmpty(type)) {
+        //     if (Goods.Column.name.value().equals(type)) {
+        //         criteria.andNameLike('%' + key + '%');
+        //     } else if (Goods.Column.description.value().equals(type)) {
+        //         // criteria.andDescriptionLike('%' + key + '%');
+        //     }
+        // }
+
+        example.orderBy(Goods.Column.addTime.desc());
+
+        PageHelper.startPage(currentPageNum, pageSize);
+
+        return orderMapper.selectByExampleSelective(example);
     }
 }

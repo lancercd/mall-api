@@ -16,14 +16,12 @@ public class AdminSchoolService {
 
     public Object add(String name) {
         School sch = schoolBaseService.findByName(name);
-        if (null == sch) {
+        if (null != sch) {
             return ResponseUtil.fail("该学校已存在!");
         }
         School school = new School();
         school.setName(name);
-        if (!schoolBaseService.add(school)) {
-            return ResponseUtil.fail("添加学校失败!");
-        }
+        schoolBaseService.add(school);
         return ResponseUtil.ok();
     }
 
@@ -32,7 +30,8 @@ public class AdminSchoolService {
         if (null == sch) {
             return ResponseUtil.fail("学校不存在!");
         }
-        return schoolBaseService.del(id);
+        schoolBaseService.del(id);
+        return ResponseUtil.ok();
     }
 
     public List<School> queryList(String keywords, Integer page, Integer size, String order) {
